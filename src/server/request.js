@@ -9,3 +9,8 @@ export function topAll (options) {
 export function contentAll (options) {
   return fly.post('page/home/list/1.0.0', options)
 }
+
+// 上拉数据
+export function dwonAll (options) {
+  return fly.post('page/home/products/1.0.0', options)
+}
