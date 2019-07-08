@@ -1,12 +1,19 @@
 <template>
-    <div>
-      首页
-    </div>
+  <div>
+    首页
+  </div>
 </template>
 <script>
+import { mapState, mapActions } from 'vuex'
 export default {
-  data(){
+  data () {
 
+  },
+  created () {
+    this.scrollAll()
+  },
+  methods: {
+    ...mapActions('index', ['scrollAll'])
   }
 }
 </script>

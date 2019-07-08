@@ -1,11 +1,11 @@
 <template>
-    <div>
-      搜索
-    </div>
+  <div>
+    我的
+  </div>
 </template>
 <script>
 export default {
-  data(){
+  data () {
 
   }
 }
