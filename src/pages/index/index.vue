@@ -1,15 +1,18 @@
 <template>
-    <div>
-      首页
-    </div>
+  <div>首页</div>
 </template>
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
-  data(){
-
+  data() {},
+  created() {
+    this.topAll();
+  },
+  methods: {
+    ...mapActions("index", ["topAll"])
   }
-}
+};
 </script>
-<style lang="sass" scoped>
-
+<style lang="scss">
+  
 </style>

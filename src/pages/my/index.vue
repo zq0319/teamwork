@@ -1,6 +1,6 @@
 <template>
     <div>
-      搜索
+      我的
     </div>
 </template>
 <script>
@@ -10,6 +10,6 @@ export default {
   }
 }
 </script>
-<style lang="sass" scoped>
+<style lang="scss" scoped>
 
 </style>
