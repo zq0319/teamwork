@@ -7,7 +7,9 @@
     "pages/my/address/main",
     "pages/my/address/addpage/main",
     "pages/my/cutomer/main",
-    "pages/my/realname/main"
+    "pages/my/realname/main",
+    "pages/index/searchFor/main",
+    "pages/detail/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
