@@ -2,19 +2,18 @@
   "pages": [
     "pages/index/main",
     "pages/my/main",
-    "pages/searchFor/main",
     "pages/my/coupon/main",
     "pages/my/address/main",
     "pages/my/address/addpage/main",
     "pages/my/cutomer/main",
     "pages/my/realname/main",
-    "pages/index/searchFor/main",
-    "pages/detail/main"
+    "pages/detail/main",
+    "pages/index/index-serch/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "积纳有品",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
