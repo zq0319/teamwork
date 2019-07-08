@@ -2,7 +2,12 @@
   "pages": [
     "pages/index/main",
     "pages/my/main",
-    "pages/counter/main"
+    "pages/searchFor/main",
+    "pages/my/coupon/main",
+    "pages/my/address/main",
+    "pages/my/address/addpage/main",
+    "pages/my/cutomer/main",
+    "pages/my/realname/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
