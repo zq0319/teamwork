@@ -22,39 +22,39 @@
 <<<<<<< HEAD
 =======
 		"urlCheck": false,
-		"es6": true,
-		"postcss": true,
-		"minified": true,
-		"newFeature": true,
-		"autoAudits": false,
-		"checkInvalidKey": true
-	},
-	"miniprogramRoot": "dist/wx/",
-	"compileType": "miniprogram",
-	"appid": "wxa5d3048ea081d72d",
+	"es6": true,
+	"postcss": true,
+	"minified": true,
+	"newFeature": true,
+	"autoAudits": false,
+	"checkInvalidKey": true
+},
+"miniprogramRoot": "dist/wx/",
+"compileType": "miniprogram",
+"appid": "wxa5d3048ea081d72d",
 >>>>>>> 835a805798b3cc039d06d32515ca7cfb63b48a56
 =======
 >>>>>>> acfd544bd289b37c3eaac2ef94c1e0c6ff1b87bf
 >>>>>>> 4d32eda2a1f3c0da46daab343d257e176a797a14
 	"projectname": "accumulate",
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"currentL": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": -1,
-			"list": []
-		}
+"simulatorType": "wechat",
+"simulatorPluginLibVersion": {},
+"condition": {
+	"search": {
+		"current": -1,
+		"list": []
+	},
+	"conversation": {
+		"current": -1,
+		"list": []
+	},
+	"game": {
+		"currentL": -1,
+		"list": []
+	},
+	"miniprogram": {
+		"current": -1,
+		"list": []
 	}
+}
 }
