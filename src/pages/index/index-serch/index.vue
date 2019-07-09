@@ -1,34 +1,32 @@
 <template>
   <div class="wrapper">
     <div class="inputtop">
-      <input type="text"
-             placeholder="搜索"
-             v-model="value"
-             @change="searchall" />
+      <input type="text" placeholder="搜索" v-model="value" @change="searchall" />
       <span>取消</span>
     </div>
     <div>
-      <p><span>历史记录</span><span>X</span></p>
+      <p>
+        <span>历史记录</span>
+        <span>X</span>
+      </p>
     </div>
   </div>
 </template>
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions } from "vuex";
 export default {
-  data () {
+  data() {
     return {
-      value: ''
-    }
+      value: ""
+    };
   },
   methods: {
-    ...mapActions('index', ['scrollAll']),
-    searchall (e) {
-
-    }
+    ...mapActions("index", ["scrollAll"]),
+    searchall(e) {}
   }
-}
+};
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 page,
 .wrapper {
   width: 100%;

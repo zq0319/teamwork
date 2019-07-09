@@ -1,118 +1,144 @@
 <template>
-  <div class="result">
-    <div class="top">
-        <div>
-            <input type="text" placeholder="收货人">
-            <span>></span>
-        </div>
-        <div>
-            <input type="text" placeholder="手机号码">
-            <span>+86></span>
-        </div>
-        <div>
-            <input type="text" placeholder="所在地区">
-            <span>></span>
-        </div>
-        <div>
-            <input type="text" class="inp" placeholder="详细地址：如道路、门牌号、小区、楼栋号、单元 室等">
-        </div>
-    </div>
-    <div class="bottom">
-       <div class="title">标签</div>
-       <div class="info">
-          <div>家</div>
-          <div>公司</div>
-          <div>学校</div>
-          <div>其它</div>
-       </div>
-       <div class="contbtn">
-           <div>设为默认地址</div>
-           <div>33</div>
-       </div>
-       <div class="save">保存</div>
-    </div>
+  <div class="wrap">
+    <form @submit="formSubmit" bindreset="formReset">
+      <div class="inp_people">
+        <input type="text" name="name" placeholder="收货人" />
+        <span>></span>
+      </div>
+      <div class="inp_phone">
+        <input type="text" name="phone" placeholder="手机号码" />
+        <span>+86</span>
+      </div>
+      <picker mode="region" class="box_picker">
+        <div class="picker_action">所在地区</div>
+      </picker>
+      <div class="inp_box">
+        <input type="text" class="inp_action" placeholder="详细地址：如道路、门牌号、小区、楼栋号、单元 室等" />
+      </div>
+      <div class="title">标签</div>
+      <div class="ceamet">
+        <div class="ceamet_box" v-for="(item,ind) in label" :key="ind">{{item}}</div>
+      </div>
+      <div class="default">
+        <div class="default_title">设为默认地址</div>
+        <switch bindchange="switch2Change" />
+      </div>
+      <button form-type="submit" class="sure">保存</button>
+    </form>
   </div>
 </template>
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions } from "vuex";
 export default {
-  data () {
-     return{
-     }
+  data() {
+    return {
+      label: ["家", "公司", "学校", "其他"]
+    };
   },
-  created () {
-    this.scrollAll()
+  created() {
+    this.scrollAll();
   },
   methods: {
-    ...mapActions('index', ['scrollAll']),
+    ...mapActions("index", ["scrollAll"]),
+    formSubmit() {
+      console.log(1);
+    }
   }
-}
+};
 </script>
-<style>
-page{
-    width:100%;
-    height:100%;
-    background:#eee;
+<style scoped>
+page {
+  width: 100%;
+  height: 100%;
+  background: #eee;
 }
-.top{
-    width:100%;
-    height:230px;
-    background:#fff;
+
+.inp_people {
+  width: 100%;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 2rpx solid #ececec;
 }
-.top div{
-    width:100%;
-    height:50px;
-    border-bottom:1px solid #f6f6f6;
-    display:flex;
-    font-size:14px;
-    color:#999;
-    align-items:center;
-    padding:0 20px;
+.inp_people input {
+  width: 86%;
+  height: auto;
+  margin-left: 6%;
 }
-.result div span{
-    position:absolute;
-    right:15px;
+.inp_phone {
+  width: 100%;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 2rpx solid #ececec;
 }
-.bottom{
-    width:100%;
-    height:150px;
-    background:#fff;
-    margin-top:10px;
+.inp_phone input {
+  width: 81%;
+  height: auto;
+  margin-left: 6%;
 }
-.title{
-    font-size:14px;
-    padding:10px 20px;
+.box_picker {
+  width: 100%;
+  height: 120rpx;
+  border-bottom: 2rpx solid #ececec;
 }
-.info{
-    display:flex;
-    align-items:center;
-    padding-bottom:30px;
-    border-bottom:1px solid #f6f6f6;
+.picker_action {
+  width: 86%;
+  height: 120rpx;
+  margin-left: 6%;
+  line-height: 120rpx;
+  color: #9ca0a5;
 }
-.info div{
-    font-size:14px;
-    padding:7px 20px;
-    border-radius:20px;
-    border:1px solid #ccc;
-    margin-left:15px;
+.inp_box {
+  width: 100%;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 20rpx solid #f0f0f0;
 }
-.contbtn{
-    display:flex;
-    justify-content:space-between;
-    font-size:14px;
-    padding:18px;
+.inp_action {
+  width: 85%;
+  margin-left: 6%;
 }
-.save{
-    width:90%;
-    height:50px;
-    background:#33d6c5;
-    color:#fff;
-    text-align:center;
-    line-height:50px;
-    border-radius:10px;
-    margin:50px auto;
+.title {
+  width: 100%;
+  height: 120rpx;
+  text-indent: 0.4rem;
+  line-height: 120rpx;
+  border-bottom: 2rpx solid #ececec;
 }
-.inp{
-    width:80%;
+.ceamet {
+  width: 100%;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+}
+.ceamet_box {
+  padding: 12rpx 28rpx;
+  border: 2rpx solid #ccc;
+  border-radius: 40rpx;
+  margin-left: 30rpx;
+}
+.default {
+  width: 100%;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.default_title {
+  margin-left: 6%;
+}
+.default switch {
+  margin-right: 6%;
+}
+.sure {
+  width: 80%;
+  height: 90rpx;
+  margin-left: 10%;
+  border-radius: 12rpx;
+  background: orangered;
+  margin-top: 120rpx;
+  color: #f0f0f0;
 }
 </style>

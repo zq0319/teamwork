@@ -1,13 +1,14 @@
-import { topAll, contentAll } from '../../server/index'
+import { topAll, contentAll, toBannerPart } from '../../server/index'
 const state = {
   topAll: [],
   contnetAll: [],
-  dwonAll: []
+  dwonAll: [],
+  bannerDatas: []
 }
 
 const actions = {
   //头部数据
-  async scrollAll ({ commit }, options) {
+  async scrollAll({ commit }, options) {
     // var data = await topAll(options)
     // console.log(data, '...............')
     wx.request({
@@ -26,7 +27,7 @@ const actions = {
     });
   },
   // 轮播图片
-  async bannerimgUrl ({ commit }, options) {
+  async bannerimgUrl({ commit }, options) {
     // var data = await contentAll(options)
     // console.log(data, '...............')
     wx.request({
@@ -45,7 +46,7 @@ const actions = {
     });
   },
   // 上拉数据
-  async dwonAll ({ commit }, options) {
+  async dwonAll({ commit }, options) {
     // var data = await contentAll(options)
     // console.log(data, '...............')
     wx.request({
@@ -63,18 +64,32 @@ const actions = {
       }
     });
   },
+  //轮播跳转数据
+  async gotobannerPart({ commit }, options) {
+    let data = await toBannerPart(options)
+    console.log(data, '0.0.0.0.0.0.0.0.0.0')
+    commit("goToBannerParts", data)
+  }
 }
 
 const mutations = {
-  topAll (state, options) {
+  //头部数据
+  topAll(state, options) {
     state.topAll = options
   },
-  contentAll (state, options) {
+  // 轮播图片
+  contentAll(state, options) {
     state.contnetAll = options
   },
-  cdwonAll (state, options) {
+  // 上拉数据
+  cdwonAll(state, options) {
     state.dwonAll = options
   },
+  //轮播跳转数据
+  goToBannerParts(state, options) {
+    state.bannerDatas = options.result
+    console.log(state.bannerDatas)
+  }
 }
 
 export default {
