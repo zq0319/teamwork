@@ -15,6 +15,7 @@
               selection-end="-1"
               cursor="-1"
               comkey="0"
+              @input="sousuo"
             />
           </div>
         </div>
@@ -35,11 +36,65 @@
         <div class="choice_item">8555</div>
       </div>
     </div>
+    <div class="list">
+      <div class="wrap">
+        <div class="nav">
+          <div class="nav_title">
+            <div class="nav_list">综合</div>
+            <div class="nav_list">最新</div>
+            <div class="nav_list">价格</div>
+          </div>
+        </div>
+        <div class="centers">
+          <div class="dler" v-for="(item,index) in fuzzySearch" :key="index">
+            <div class="dl">
+              <div class="dll">
+                <img :src="item.mainImgUrl" alt  mode="widthFix"/>
+              </div>
+            </div>
+            <div class="dd">
+              <div class="ddd">{{item.title}}</div>
+              <div class="price">
+                <div class="prices">￥{{item.vipPrice}}</div>
+                <div class="span">{{item.vipPrice}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
-  data() {}
+  data() {
+    return {
+      queryWord: "",
+      queryType: 0,
+      querySort: "asc",
+      pageIndex: 1
+    };
+  },
+  computed: {
+    ...mapState({
+      fuzzySearch: state => state.index.fuzzySearch
+    })
+  },
+  methods: {
+    ...mapActions("index", ["fuzzySearchs"]),
+    sousuo(e) {
+      let that = this;
+      let queryWord = e.target.value;
+      let queryType = that.queryType;
+      let querySort = that.querySort;
+      let pageIndex = that.pageIndex;
+      clearTimeout(clock);
+      var clock = setTimeout(function() {
+        that.fuzzySearchs({ queryWord, queryType, querySort, pageIndex });
+      }, 1500);
+    }
+  }
 };
 </script>
 <style lang="scss">
@@ -137,6 +192,82 @@ page,
         margin: 10rpx;
         text-align: center;
         line-height: 60rpx;
+      }
+    }
+  }
+  .list {
+    width: 100%;
+    .nav {
+      width: 100%;
+      z-index: 666;
+      height: 80rpx;
+      background: #fff;
+      .nav_title {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        .nav_list {
+          flex: 1;
+          height: 100%;
+          text-align: center;
+          line-height: 80rpx;
+          font-size: 26rpx;
+        }
+      }
+    }
+    .centers {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      background: #f3f7f7;
+      padding: 18rpx 10rpx 0;
+      box-sizing: border-box;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .dler {
+        width: 363rpx;
+        height: 526rpx;
+        background: #fff;
+        border-radius: 10rpx;
+        display: flex;
+        flex-direction: column;
+        margin-top: 8rpx;
+        .dl {
+          height:350rpx;
+          padding: 60rpx 46rpx 30rpx 28rpx;
+          img {
+            width: 100%;
+          }
+        }
+        .dd {
+          width: 100%;
+          flex: 1;
+        }
+        .ddd {
+          font-size: 24rpx;
+          padding-left: 10rpx;
+          color: #323a45;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        .price {
+          width: 100%;
+          display: flex;
+          align-items: flex-end;
+          .prices {
+            display: flex;
+            align-items: flex-end;
+            padding-left: 6rpx;
+            color: #fc5d7b;
+          }
+          .span {
+            font-size: 22rpx;
+            color: #a89831;
+          }
+        }
       }
     }
   }
