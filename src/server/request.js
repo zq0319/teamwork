@@ -43,5 +43,6 @@ export function tabArrayStyle(options) {
 
 // banner part
 export function goToBannerPart(options) {
+
   return fly.post(`sepcial/query/1.0.0`, options)
 }
