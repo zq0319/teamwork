@@ -2,6 +2,9 @@
 	"description": "项目配置文件。",
 	"setting": {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> acfd544bd289b37c3eaac2ef94c1e0c6ff1b87bf
 		"urlCheck": true,
 		"es6": false,
 		"postcss": true,
@@ -11,6 +14,7 @@
 	"miniprogramRoot": "dist/wx/",
 	"compileType": "miniprogram",
 	"appid": "touristappid",
+<<<<<<< HEAD
 =======
 		"urlCheck": false,
 		"es6": true,
@@ -24,6 +28,8 @@
 	"compileType": "miniprogram",
 	"appid": "wxa5d3048ea081d72d",
 >>>>>>> 835a805798b3cc039d06d32515ca7cfb63b48a56
+=======
+>>>>>>> acfd544bd289b37c3eaac2ef94c1e0c6ff1b87bf
 	"projectname": "accumulate",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},

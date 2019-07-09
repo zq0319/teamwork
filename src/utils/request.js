@@ -10,7 +10,7 @@ fly.config.baseURL = 'https://upapi.jinaup.com/api/open/'
 // fly.config.baseURL = "http://169.254.12.68:7001/"
 // fly.config.baseURL = 'http://127.0.0.1:7001/'
 
-// const HOST = 'https://127.0.0.1' // 更改
+const HOST = 'https://127.0.0.1' // 更改
 //添加请求拦截器
 fly.interceptors.request.use((request) => {
   // 把openid放在请求头部

@@ -11,10 +11,8 @@ export default {
      }
   },
   created () {
-    this.scrollAll()
   },
   methods: {
-    ...mapActions('index', ['scrollAll']),
     addPage(){
         var url="./addpage/main"
         wx.navigateTo({url})

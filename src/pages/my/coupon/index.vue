@@ -24,10 +24,8 @@ export default {
      }
   },
   created () {
-    this.scrollAll()
   },
   methods: {
-    ...mapActions('index', ['scrollAll']),
      changTab(index) {
         this.tab = index;
       }
