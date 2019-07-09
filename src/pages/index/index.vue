@@ -7,20 +7,20 @@
     <!-- scroll -->
     <scroll-view scroll-x
                  class="scrolltop">
-      <view class="address">今日推荐</view>
       <view v-for="(item,ind) in topAll"
-            :key="ind">{{item.cname}}</view>
+            :key="ind"
+            :class="ind === index?'address':null">{{item.cname}}</view>
     </scroll-view>
     <!-- banner -->
     <div class="banner"
-         v-if="contnetAll[0].items">
+         v-if="contnetAll[0]['items']">
       <swiper indicator-dots="false"
               autoplay="false"
               interval="5000"
               circular="true"
               duration="1000"
               class="banner_swiper">
-        <swiper-item v-for="(item,index) in contnetAll[0].items"
+        <swiper-item v-for="(item,index) in contnetAll[0]['items']"
                      :key="index"
                      class="banner_item">
           <image :src="item.imgUrl" />
@@ -37,7 +37,7 @@
       </div>
     </div>
     <!-- 内容 -->
-    <div>
+    <div v-if="contnetAll.length">
       <div class="content">
         <div class="contnet_top"><img :src="contnetAll[3].pictUrl"
                alt=""></div>
@@ -47,7 +47,8 @@
         </div>
         <div class="content_con">
           <div v-for="(item,index) in contnetAll[4].items"
-               :key="index">
+               :key="index"
+               @click="clickDetail(item.jumpUrl)">
             <img :src="item.imgUrl"
                  alt="">
             <p>{{item.title}}</p>
@@ -64,7 +65,8 @@
         </div>
         <div class="content_con">
           <div v-for="(item,index) in contnetAll[6].items"
-               :key="index">
+               :key="index"
+               @click="clickDetail(item.jumpUrl)">
             <img :src="item.imgUrl"
                  alt="">
             <p>{{item.title}}</p>
@@ -81,7 +83,8 @@
         </div>
         <div class="content_con">
           <div v-for="(item,index) in contnetAll[8].items"
-               :key="index">
+               :key="index"
+               @click="clickDetail(item.jumpUrl)">
             <img :src="item.imgUrl"
                  alt="">
             <p>{{item.title}}</p>
@@ -98,7 +101,8 @@
         </div>
         <div class="content_con">
           <div v-for="(item,index) in contnetAll[10].items"
-               :key="index">
+               :key="index"
+               @click="clickDetail(item.jumpUrl)">
             <img :src="item.imgUrl"
                  alt="">
             <p>{{item.title}}</p>
@@ -115,7 +119,8 @@
         </div>
         <div class="content_con">
           <div v-for="(item,index) in contnetAll[12].items"
-               :key="index">
+               :key="index"
+               @click="clickDetail(item.jumpUrl)">
             <img :src="item.imgUrl"
                  alt="">
             <p>{{item.title}}</p>
@@ -125,10 +130,23 @@
       </div>
     </div>
     <!-- dwon数据 -->
-    <div>
-      <div v-for="(item,index) in dwonAll"
+    <div class="dwon_item">
+      <div v-for="(item,index) in dwonAlls"
+           class="down_items"
+           @click="clickDetail(item.productVo.pid)"
            :key="index">
-        22222
+        <div class="imgdiv"><img :src="item.productVo.mainImgUrl"
+               alt=""></div>
+        <div class="item_content">
+          <p>{{item.productVo.title}}</p>
+          <div class="isFreeShipping"><span v-if="item.productVo.isFreeShipping">包邮</span><span v-if="item.productVo.isFreeTax">包税</span></div>
+          <div class="price"><span>￥{{item.productVo.salesPrice}}</span>
+            <div>￥{{item.productVo.vipPrice}}<img v-if="item.productVo.vipPrice"
+                   src="/static/images/黑卡@2x.png"
+                   alt=""></div>
+            <a>赚{{item.productVo.earnMoney}}</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -137,16 +155,19 @@
 import { mapState, mapActions } from 'vuex'
 export default {
   data () {
-
+    return {
+      index: 0
+    }
   },
   computed: {
     ...mapState({
       topAll: state => state.index.topAll,
       contnetAll: state => state.index.contnetAll,
-      dwonAll: state => state.index.dwonAll
+      dwonAlls: state => state.index.dwonAlls
     })
   },
   created () {
+    // console.log(this.scrollAll())
     this.scrollAll({
       parentId: 0
     })
@@ -155,10 +176,27 @@ export default {
       pageIndex: 1
     })
   },
+  onReachBottom () {
+    let index = 1;
+    index++
+    this.dwonAll({
+      pageIndex: index
+    })
+  },
   methods: {
     ...mapActions('index', ['scrollAll', 'bannerimgUrl', 'dwonAll']),
     serch () {
       wx.navigateTo({ url: `/pages/index/index-serch/main` });
+    },
+    clickDetail (e) {
+      let str
+      if (typeof (e) !== 'number') {
+        str = e.split("&")[1].split("=")[1]
+      } else {
+        str = e;
+      }
+      console.log(str)
+      wx.navigateTo({ url: `/pages/index/detail/main?pid=${str}` });
     }
   }
 }
@@ -324,6 +362,77 @@ page,
     img {
       width: 100%;
       height: 250rpx;
+    }
+  }
+}
+.dwon_item {
+  width: 100%;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+
+  .down_items {
+    width: 100%;
+    // height: 200rpx;
+    margin-top: 30rpx;
+    display: flex;
+
+    .imgdiv {
+      width: 200rpx;
+      height: 200rpx;
+      display: flex;
+      padding: 15rpx;
+      justify-content: center;
+      align-items: center;
+    }
+    .item_content {
+      flex: 1;
+
+      > p {
+        width: 100%;
+        line-height: 60rpx;
+      }
+      .isFreeShipping {
+        span {
+          font-size: 22rpx;
+          border: 2rpx solid red;
+          border-radius: 5rpx;
+          color: red;
+          padding: 5rpx 7rpx;
+          margin: 0 10rpx;
+        }
+      }
+      .price {
+        width: 100%;
+        line-height: 100rpx;
+        display: flex;
+        font-size: 22rpx;
+        color: red;
+        > span {
+          font-size: 45rpx;
+          margin-right: 10rpx;
+        }
+        div {
+          display: flex;
+          align-items: center;
+          margin-right: 10rpx;
+
+          img {
+            width: 60rpx;
+            height: 20rpx;
+          }
+        }
+        > a {
+          height: 22rpx;
+          line-height: 22rpx;
+          position: relative;
+          top: 40rpx;
+          background: #eee;
+        }
+      }
+    }
+    img {
+      width: 100%;
+      height: 100%;
     }
   }
 }

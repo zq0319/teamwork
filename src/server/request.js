@@ -14,3 +14,18 @@ export function contentAll (options) {
 export function dwonAll (options) {
   return fly.post('page/home/products/1.0.0', options)
 }
+
+// 详情数据
+export function detailStr (options) {
+  return fly.post('product/info/1.0.0', options)
+}
+
+// 详情图片
+export function detailPicture (options) {
+  return fly.post('product/detailPicture/1.0.0', options)
+}
+
+// 详情提示
+export function detailAddress (options) {
+  return fly.post('shipping/templates/info/1.0.0', options)
+}

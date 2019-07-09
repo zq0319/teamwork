@@ -2,8 +2,8 @@
   "pages": [
     "pages/index/main",
     "pages/index/index-serch/main",
+    "pages/index/detail/main",
     "pages/my/main",
-    "pages/searchFor/main",
     "pages/my/coupon/main",
     "pages/my/address/main",
     "pages/my/address/addpage/main",
