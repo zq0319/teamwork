@@ -10,9 +10,7 @@
             <span>（图片png、jpg 大小不超过5M）</span>
          </div>
          <div class="files">
-             <div>
-               <input type="file" value="+" onChange={inpChange}/>
-             </div>
+             <div @click="inpChange">+</div>
              <div>+</div>
          </div>
       </div>
@@ -34,6 +32,15 @@ export default {
   created () {
   },
   methods: {
+     inpChange(e){
+         console.log(e)
+        // let files=e.target.files
+        // var reader=new FileReader()
+        // reader.onload=function(){
+        //     setval(this.result)
+        // }
+        // reader.readAsDataURL(files[0])
+    }
   }
 }
 </script>
