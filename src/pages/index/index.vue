@@ -205,6 +205,7 @@ export default {
       } else {
         str = e;
       }
+
       console.log(str)
       wx.navigateTo({ url: `/pages/index/detail/main?pid=${str}` });
     },
