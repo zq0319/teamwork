@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/main",
-    "pages/index/index-serch/main",
+    "pages/index/bannerPart/main",
+    "pages/index/searchFor/main",
     "pages/index/detail/main",
     "pages/index/top-array/main",
     "pages/my/main",

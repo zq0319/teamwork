@@ -65,7 +65,7 @@ export default {
        wx.navigateTo({url})
     }
   }
-}
+};
 </script>
 <style>
 page{

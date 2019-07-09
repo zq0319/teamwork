@@ -46,6 +46,9 @@ export default {
   -moz-transition: width 2s;
   -webkit-transition: width 2s;
   -o-transition: width 2s;
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
 }
 page,
 .wrapper {

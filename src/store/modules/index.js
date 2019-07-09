@@ -9,7 +9,9 @@ const state = {
   scrollChildsAlls: [],
   tabsArrayFnTop: []
 }
+const getters = {
 
+}
 const actions = {
   //头部数据
   async scrollAll ({ commit }, payload) {
@@ -61,7 +63,6 @@ const actions = {
 
   },
 }
-
 const mutations = {
   topAll (state, options) {
     state.topAll = options
@@ -92,6 +93,7 @@ const mutations = {
 export default {
   namespaced: true,
   state,
+  getters,
   actions,
   mutations
 }
