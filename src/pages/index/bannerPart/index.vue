@@ -16,7 +16,7 @@
             <img :src="items.mainImgUrl" class="wrap_content_shop_left_img" alt />
           </div>
           <div class="wrap_content_shop_right">
-            <p class="wrap_content_shop_right_title">{{items.shortTitle}}</p>
+            <p class="wrap_content_shop_right_title">{{items.title}}</p>
             <p class="wrap_content_shop_right_many">
               <span class="wrap_content_shop_right_many_j">￥{{items.salesPrice}}</span>
               <span class="wrap_content_shop_right_many_z">赚￥{{items.memberDiscountPrice}}</span>
