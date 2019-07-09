@@ -36,7 +36,8 @@
              alt="">
       </div>
     </div>
-    <div class="content">
+    <div>
+<div class="content">
       <div class="contnet_top"><img :src="contnetAll[3].pictUrl"
              alt=""></div>
       <div class="contnet_title">
@@ -121,6 +122,8 @@
         </div>
       </div>
     </div>
+    </div>
+    
   </div>
 </template>
 <script>
