@@ -12,10 +12,8 @@ export default {
      }
   },
   created () {
-    this.scrollAll()
   },
   methods: {
-    ...mapActions('index', ['scrollAll']),
   }
 }
 </script>

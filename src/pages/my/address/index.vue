@@ -11,10 +11,8 @@ export default {
      }
   },
   created () {
-    this.scrollAll()
   },
   methods: {
-    ...mapActions('index', ['scrollAll']),
     addPage(){
         var url="./addpage/main"
         wx.navigateTo({url})
@@ -26,7 +24,7 @@ export default {
 page{
     width:100%;
     height:100%;
-    background:#eee;
+    background:#f3f7f7;
 }
 .result div{
     width:96%;

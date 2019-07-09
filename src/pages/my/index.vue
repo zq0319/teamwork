@@ -2,18 +2,18 @@
   <div>
     <img src="../../../static/images/logBg.png" class="img" alt="">
      <div class="order">
-         <h3>我的订单</h3>
+         <h3 @click="Myorder">我的订单</h3>
          <div class="dl">
-            <div>
+            <div @click="Payment">
                 <img src="../../../static/images/dfk.png" alt="">
                 <span>待付款</span>
             </div>
-            <div>
-                <img src="../../../static/images/dfk.png" alt="">
+            <div @click="Shipments">
+                <img src="../../../static/images/dfh.png" alt="">
                 <span>待发货</span>
             </div>
-            <div>
-                <img src="../../../static/images/dfk.png" alt="">
+            <div @click="Receiving">
+                <img src="../../../static/images/dsh.png" alt="">
                 <span>待收货</span>
             </div>
          </div>
@@ -59,19 +59,35 @@ export default {
     Cutomer(){//联系客服
       var url="./cutomer/main"
        wx.navigateTo({url})
-    },//点击实名认证
-    Realname(){
+    },
+    Realname(){//点击实名认证
       var url="./realname/main"
+       wx.navigateTo({url})
+    },
+    Payment(){//点击待付款
+      var url="./payment/main"
+       wx.navigateTo({url})
+    },
+    Shipments(){//点击待发货
+       var url="./shipments/main"
+       wx.navigateTo({url})
+    },
+    Receiving(){//点击待收货
+       var url="./receiving/main"
+       wx.navigateTo({url})
+    },
+    Myorder(){//点击我的订单
+       var url="./myorder/main"
        wx.navigateTo({url})
     }
   }
-}
+}                                               
 </script>
 <style>
 page{
   width:100%;
   height:100%;
-  background:#eee;
+  background:#f3f7f7;
 }
 .img{
   width:100%;

@@ -10,8 +10,12 @@
             <span>+86></span>
         </div>
         <div>
-            <input type="text" placeholder="所在地区">
-            <span>></span>
+            <view class="section">
+                <picker mode="region" bindchange="bindRegionChange" value="{region}" custom-item="全部">
+                    <view class="picker"><span class="address">所在地区</span><span class="backpage">></span></view>
+                </picker>
+                </view>
+            </view>
         </div>
         <div>
             <input type="text" class="inp" placeholder="详细地址：如道路、门牌号、小区、楼栋号、单元 室等">
@@ -27,7 +31,11 @@
        </div>
        <div class="contbtn">
            <div>设为默认地址</div>
-           <div>33</div>
+           <div>
+               <view class="body-view">
+                    <switch bindchange="switch1Change"/>
+              </view>
+           </div>
        </div>
        <div class="save">保存</div>
     </div>
@@ -38,25 +46,29 @@ import { mapState, mapActions } from 'vuex'
 export default {
   data () {
      return{
+          region: ['广东省', '广州市', '海珠区'],
      }
   },
   created () {
-    this.scrollAll()
   },
   methods: {
-    ...mapActions('index', ['scrollAll']),
+    bindRegionChange: function (e) {
+    this.setData({
+      region: e.detail.value
+    })
   }
+  } 
 }
 </script>
 <style>
 page{
     width:100%;
     height:100%;
-    background:#eee;
+    background:#f3f7f7;
 }
 .top{
     width:100%;
-    height:230px;
+    height:220px;
     background:#fff;
 }
 .top div{
@@ -91,7 +103,7 @@ page{
 }
 .info div{
     font-size:14px;
-    padding:7px 20px;
+    padding:7px 22px;
     border-radius:20px;
     border:1px solid #ccc;
     margin-left:15px;
@@ -114,5 +126,17 @@ page{
 }
 .inp{
     width:80%;
+}
+.address{
+    position:absolute;
+    left:20px;
+    margin-top:-10px;
+    color:#666;
+}
+.backpage{
+    margin-top:-10px;
+}
+.body-view{
+    margin-top:-10px;
 }
 </style>

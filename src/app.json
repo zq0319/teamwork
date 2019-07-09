@@ -8,7 +8,11 @@
     "pages/my/cutomer/main",
     "pages/my/realname/main",
     "pages/detail/main",
-    "pages/index/index-serch/main"
+    "pages/index/index-serch/main",
+    "pages/my/payment/main",
+    "pages/my/shipments/main",
+    "pages/my/receiving/main",
+    "pages/my/myorder/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

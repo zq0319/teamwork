@@ -10,8 +10,8 @@
           <img src="../../../../static/images/暂无.png" alt="">
           <span>暂时没有可用的优惠券哦~</span>
       </div>
-      <div v-else-if="tab===2">中级</div>
-      <div v-else>高级</div>
+      <div v-else-if="tab===2">已使用</div>
+      <div v-else>已过期</div>
     </div>
   </div>
 </template>
@@ -24,10 +24,8 @@ export default {
      }
   },
   created () {
-    this.scrollAll()
   },
   methods: {
-    ...mapActions('index', ['scrollAll']),
      changTab(index) {
         this.tab = index;
       }
@@ -49,7 +47,6 @@ export default {
       .selected {
         border-bottom:4rpx solid #33d6c5;
         height:100%;
-
     }
   }
 }

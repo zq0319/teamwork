@@ -9,6 +9,12 @@
             <div>上传身份证照片</div>
             <span>（图片png、jpg 大小不超过5M）</span>
          </div>
+         <div class="files">
+             <div>
+               <input type="file" value="+" onChange={inpChange}/>
+             </div>
+             <div>+</div>
+         </div>
       </div>
       <div class="bottom">
          <div class="tit">为什么需要实名认证？</div>
@@ -26,10 +32,8 @@ export default {
      }
   },
   created () {
-    this.scrollAll()
   },
   methods: {
-    ...mapActions('index', ['scrollAll']),
   }
 }
 </script>
@@ -37,7 +41,7 @@ export default {
 page{
     width:100%;
     height:100%;
-    background:#eee;
+    background:#f3f7f7;
 }
 .top{
     width:100%;
@@ -87,5 +91,19 @@ page{
     margin-left:5%;
     text-align:center;
     line-height:40px;
+}
+.files div{
+    width:155px;
+    height:100px;
+    border:1px dashed #ccc;
+    text-align:center;
+    line-height:100px;
+    margin-top:15px;
+    margin-left:10px;
+    font-size:30px;
+    color:#ccc;
+}
+.files{
+    display:flex;
 }
 </style>
