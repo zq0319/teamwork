@@ -3,12 +3,13 @@
     "pages/index/main",
     "pages/index/indexSerch/main",
     "pages/index/detail/main",
+    "pages/index/top-array/main",
+    "pages/my/main",
+    "pages/my/coupon/main",
     "pages/my/address/main",
     "pages/my/address/addpage/main",
-    "pages/my/coupon/main",
     "pages/my/cutomer/main",
-    "pages/my/realname/main",
-    "pages/my/main"
+    "pages/my/realname/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
