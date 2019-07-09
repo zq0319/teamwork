@@ -1,15 +1,14 @@
 {
   "pages": [
     "pages/index/main",
-    "pages/index/bannerPart/main",
-    "pages/index/index-serch/main",
-    "pages/my/main",
-    "pages/searchFor/main",
-    "pages/my/coupon/main",
+    "pages/index/indexSerch/main",
+    "pages/index/detail/main",
     "pages/my/address/main",
+    "pages/my/address/addpage/main",
+    "pages/my/coupon/main",
     "pages/my/cutomer/main",
     "pages/my/realname/main",
-    "pages/my/address/addpage/main"
+    "pages/my/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

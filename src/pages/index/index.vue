@@ -168,11 +168,14 @@ export default {
       console.log(item);
       this.gotobannerPart({ siid: item.contentValue });
       wx.navigateTo({ url: `/pages/index/bannerPart/main` });
+    },
+    clickDetail() {
+      wx.navigateTo({ url: `/pages/index/detail/main` });
+      }
     }
-  }
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 page,
 .wrapper {
   width: 100%;
