@@ -5,151 +5,174 @@
       <div @click="serch">搜索</div>
     </div>
     <!-- scroll -->
-    <scroll-view scroll-x
-                 class="scrolltop">
+    <scroll-view scroll-x class="scrolltop">
       <view class="address">今日推荐</view>
-      <view v-for="(item,ind) in topAll"
-            :key="ind">{{item.cname}}</view>
+      <view v-for="(item,ind) in topAll" :key="ind">{{item.cname}}</view>
     </scroll-view>
     <!-- banner -->
-    <div class="banner"
-         v-if="contnetAll[0].items">
-      <swiper indicator-dots="false"
-              autoplay="false"
-              interval="5000"
-              circular="true"
-              duration="1000"
-              class="banner_swiper">
-        <swiper-item v-for="(item,index) in contnetAll[0].items"
-                     :key="index"
-                     class="banner_item">
-          <image :src="item.imgUrl" />
+    <div class="banner" v-if="contnetAll[0].items">
+      <swiper
+        indicator-dots="false"
+        autoplay="false"
+        interval="5000"
+        circular="true"
+        duration="1000"
+        class="banner_swiper"
+      >
+        <swiper-item v-for="(item,index) in contnetAll[0].items" :key="index" class="banner_item">
+          <image :src="item.imgUrl" @click="gotobanPart(item)" />
         </swiper-item>
       </swiper>
     </div>
     <!--  link图片-->
-    <div v-if="contnetAll[1].items"
-         class="linkUrl">
-      <div v-for="(item,i) in contnetAll[1].items"
-           :key="i">
-        <img :src="item.imgUrl"
-             alt="">
+    <div v-if="contnetAll[1].items" class="linkUrl">
+      <div v-for="(item,i) in contnetAll[1].items" :key="i">
+        <img :src="item.imgUrl" alt />
       </div>
     </div>
-    <div class="content">
-      <div class="contnet_top"><img :src="contnetAll[3].pictUrl"
-             alt=""></div>
-      <div class="contnet_title">
-        <div><span>精选好物</span> | <span>等你来抢</span></div>
-        <div class="tops">更多</div>
+    <!-- 内容 -->
+    <div>
+      <div class="content">
+        <div class="contnet_top">
+          <img :src="contnetAll[3].pictUrl" alt />
+        </div>
+        <div class="contnet_title">
+          <div>
+            <span>精选好物</span> |
+            <span>等你来抢</span>
+          </div>
+          <div class="tops">更多</div>
+        </div>
+        <div class="content_con">
+          <div v-for="(item,index) in contnetAll[4].items" :key="index">
+            <img :src="item.imgUrl" alt />
+            <p>{{item.title}}</p>
+            <span>￥{{item.salesPrice}}</span>
+          </div>
+        </div>
       </div>
-      <div class="content_con">
-        <div v-for="(item,index) in contnetAll[4].items"
-             :key="index">
-          <img :src="item.imgUrl"
-               alt="">
-          <p>{{item.title}}</p>
-          <span>￥{{item.salesPrice}}</span>
+      <div class="content">
+        <div class="contnet_top">
+          <img :src="contnetAll[5].pictUrl" alt />
+        </div>
+        <div class="contnet_title">
+          <div>
+            <span>精选好物</span> |
+            <span>等你来抢</span>
+          </div>
+          <div class="tops">更多</div>
+        </div>
+        <div class="content_con">
+          <div v-for="(item,index) in contnetAll[6].items" :key="index">
+            <img :src="item.imgUrl" alt />
+            <p>{{item.title}}</p>
+            <span>￥{{item.salesPrice}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="contnet_top">
+          <img :src="contnetAll[7].pictUrl" alt />
+        </div>
+        <div class="contnet_title">
+          <div>
+            <span>精选好物</span> |
+            <span>等你来抢</span>
+          </div>
+          <div class="tops">更多</div>
+        </div>
+        <div class="content_con">
+          <div v-for="(item,index) in contnetAll[8].items" :key="index">
+            <img :src="item.imgUrl" alt />
+            <p>{{item.title}}</p>
+            <span>￥{{item.salesPrice}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="contnet_top">
+          <img :src="contnetAll[9].pictUrl" alt />
+        </div>
+        <div class="contnet_title">
+          <div>
+            <span>精选好物</span> |
+            <span>等你来抢</span>
+          </div>
+          <div class="tops">更多</div>
+        </div>
+        <div class="content_con">
+          <div v-for="(item,index) in contnetAll[10].items" :key="index">
+            <img :src="item.imgUrl" alt />
+            <p>{{item.title}}</p>
+            <span>￥{{item.salesPrice}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="contnet_top">
+          <img :src="contnetAll[11].pictUrl" alt />
+        </div>
+        <div class="contnet_title">
+          <div>
+            <span>精选好物</span> |
+            <span>等你来抢</span>
+          </div>
+          <div class="tops">更多</div>
+        </div>
+        <div class="content_con">
+          <div v-for="(item,index) in contnetAll[12].items" :key="index">
+            <img :src="item.imgUrl" alt />
+            <p>{{item.title}}</p>
+            <span>￥{{item.salesPrice}}</span>
+          </div>
         </div>
       </div>
     </div>
-    <div class="content">
-      <div class="contnet_top"><img :src="contnetAll[5].pictUrl"
-             alt=""></div>
-      <div class="contnet_title">
-        <div><span>精选好物</span> | <span>等你来抢</span></div>
-        <div class="tops">更多</div>
-      </div>
-      <div class="content_con">
-        <div v-for="(item,index) in contnetAll[6].items"
-             :key="index">
-          <img :src="item.imgUrl"
-               alt="">
-          <p>{{item.title}}</p>
-          <span>￥{{item.salesPrice}}</span>
-        </div>
-      </div>
-    </div>
-    <div class="content">
-      <div class="contnet_top"><img :src="contnetAll[7].pictUrl"
-             alt=""></div>
-      <div class="contnet_title">
-        <div><span>精选好物</span> | <span>等你来抢</span></div>
-        <div class="tops">更多</div>
-      </div>
-      <div class="content_con">
-        <div v-for="(item,index) in contnetAll[8].items"
-             :key="index">
-          <img :src="item.imgUrl"
-               alt="">
-          <p>{{item.title}}</p>
-          <span>￥{{item.salesPrice}}</span>
-        </div>
-      </div>
-    </div>
-    <div class="content">
-      <div class="contnet_top"><img :src="contnetAll[9].pictUrl"
-             alt=""></div>
-      <div class="contnet_title">
-        <div><span>精选好物</span> | <span>等你来抢</span></div>
-        <div class="tops">更多</div>
-      </div>
-      <div class="content_con">
-        <div v-for="(item,index) in contnetAll[10].items"
-             :key="index">
-          <img :src="item.imgUrl"
-               alt="">
-          <p>{{item.title}}</p>
-          <span>￥{{item.salesPrice}}</span>
-        </div>
-      </div>
-    </div>
-    <div class="content">
-      <div class="contnet_top"><img :src="contnetAll[11].pictUrl"
-             alt=""></div>
-      <div class="contnet_title">
-        <div><span>精选好物</span> | <span>等你来抢</span></div>
-        <div class="tops">更多</div>
-      </div>
-      <div class="content_con">
-        <div v-for="(item,index) in contnetAll[12].items"
-             :key="index">
-          <img :src="item.imgUrl"
-               alt="">
-          <p>{{item.title}}</p>
-          <span>￥{{item.salesPrice}}</span>
-        </div>
-      </div>
+    <!-- dwon数据 -->
+    <div>
+      <div v-for="(item,index) in dwonAll" :key="index">22222</div>
     </div>
   </div>
 </template>
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions } from "vuex";
 export default {
-  data () {
-
-  },
+  data() {},
   computed: {
     ...mapState({
       topAll: state => state.index.topAll,
-      contnetAll: state => state.index.contnetAll
+      contnetAll: state => state.index.contnetAll,
+      dwonAll: state => state.index.dwonAll
     })
   },
-  created () {
+  created() {
     this.scrollAll({
       parentId: 0
-    })
-    this.bannerimgUrl("")
+    });
+    this.bannerimgUrl("");
+    this.dwonAll({
+      pageIndex: 1
+    });
   },
   methods: {
-    ...mapActions('index', ['scrollAll', 'bannerimgUrl']),
-    serch () {
+    ...mapActions("index", [
+      "scrollAll",
+      "bannerimgUrl",
+      "dwonAll",
+      "gotobannerPart"
+    ]),
+    serch() {
       wx.navigateTo({ url: `/pages/index/index-serch/main` });
+    },
+    gotobanPart(item) {
+      console.log(item);
+      this.gotobannerPart({ siid: item.contentValue });
+      wx.navigateTo({ url: `/pages/index/bannerPart/main` });
     }
   }
-}
+};
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 page,
 .wrapper {
   width: 100%;
@@ -258,6 +281,7 @@ page,
   .contnet_top {
     width: 100%;
     height: 200rpx;
+    padding: 20rpx 0;
 
     > img {
       width: 100%;
