@@ -9,6 +9,7 @@
                  class="scrolltop">
       <view v-for="(item,ind) in topAll"
             :key="ind"
+            @click="strtop(ind)"
             :class="ind === index?'address':null">{{item.cname}}</view>
     </scroll-view>
     <!-- banner -->
@@ -197,16 +198,19 @@ export default {
       }
       console.log(str)
       wx.navigateTo({ url: `/pages/index/detail/main?pid=${str}` });
+    },
+    strtop (ind) {
+      if (ind === 0) {
+        return
+      } else {
+        console.log(ind)
+        wx.navigateTo({ url: `/pages/index/top-array/main?page=${ind}` });
+      }
     }
   }
 }
 </script>
 <style lang="scss">
-page,
-.wrapper {
-  width: 100%;
-  height: 100%;
-}
 .inputtop {
   width: 100%;
   height: 100rpx;

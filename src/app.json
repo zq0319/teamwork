@@ -3,6 +3,7 @@
     "pages/index/main",
     "pages/index/index-serch/main",
     "pages/index/detail/main",
+    "pages/index/top-array/main",
     "pages/my/main",
     "pages/my/coupon/main",
     "pages/my/address/main",

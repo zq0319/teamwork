@@ -1,11 +1,13 @@
-import { topAll, contentAll, dwonAll, detailStr, detailPicture, detailAddress } from '../../server/index'
+import { topAll, contentAll, dwonAll, detailStr, detailPicture, detailAddress, childsAll, tabArrayStyle } from '../../server/index'
 const state = {
   topAll: [],
   contnetAll: [],
   dwonAlls: [],
   detailStr: {},
   detailStrImgsAll: [],
-  detailAddressObj: {}
+  detailAddressObj: {},
+  scrollChildsAlls: [],
+  tabsArrayFnTop: []
 }
 
 const actions = {
@@ -42,6 +44,22 @@ const actions = {
     var data = await detailAddress(payload)
     commit('detailAddressO', data)
   },
+  //srcoll数据2.0
+  async scrollChildsAll ({ commit }, payload) {
+    var data = await childsAll(payload)
+    commit('scrollChildsAlls', data.result)
+  },
+  //tab状态数据
+  async tabsArray ({ commit }, payload) {
+    var data = await tabArrayStyle(payload)
+    console.log(payload.pageIndex !== 1)
+    if (payload.pageIndex !== 1) {
+      commit('tabsArrayFn', [...state.tabsArrayFnTop, ...data.result])
+    } else {
+      commit('tabsArrayFn', data.result)
+    }
+
+  },
 }
 
 const mutations = {
@@ -62,6 +80,12 @@ const mutations = {
   },
   detailAddressO (state, options) {
     state.detailAddressObj = options
+  },
+  scrollChildsAlls (state, options) {
+    state.scrollChildsAlls = options
+  },
+  tabsArrayFn (state, options) {
+    state.tabsArrayFnTop = options
   },
 }
 
