@@ -2,21 +2,23 @@
   <div class="wrap">
     <div class="wrap_box">
       <div class="ban_top">
-        <img :src="goToBanPartData.specialImg" class="ban_img" alt />
+        <img :src="goToBanPartData.specialImg"
+             class="ban_img"
+             alt />
         <p>{{goToBanPartData.specialName}}</p>
       </div>
       <div class="wrap_content">
         <div class="wrap_content_title">—— ◆ {{goToBanPartData.anchors[0].anchorDesc}} ◆ ——</div>
-        <div
-          class="wrap_content_shop"
-          v-for="(items,index) in goToBanPartData.anchors[0].products"
-          :key="index"
-        >
+        <div class="wrap_content_shop"
+             v-for="(items,index) in goToBanPartData.anchors[0].products"
+             :key="index">
           <div class="wrap_content_shop_left">
-            <img :src="items.mainImgUrl" class="wrap_content_shop_left_img" alt />
+            <img :src="items.mainImgUrl"
+                 class="wrap_content_shop_left_img"
+                 alt />
           </div>
           <div class="wrap_content_shop_right">
-            <p class="wrap_content_shop_right_title">{{items.shortTitle}}</p>
+            <p class="wrap_content_shop_right_title">{{items.title}}</p>
             <p class="wrap_content_shop_right_many">
               <span class="wrap_content_shop_right_many_j">￥{{items.salesPrice}}</span>
               <span class="wrap_content_shop_right_many_z">赚￥{{items.memberDiscountPrice}}</span>
@@ -30,7 +32,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 export default {
-  data() {},
+  data () { },
   computed: {
     ...mapState({
       goToBanPartData: state => state.index.bannerDatas
