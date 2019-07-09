@@ -47,4 +47,9 @@ export default {
   -webkit-transition: width 2s;
   -o-transition: width 2s;
 }
+page,
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
 </style>
