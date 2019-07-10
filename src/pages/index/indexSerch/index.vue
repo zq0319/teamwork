@@ -3,40 +3,39 @@
     <div class="searchFor">
       <div class="search">
         <div class="secach-bg">
-          <img src="/static/images/search.png" alt class="img" />
+          <img src="/static/images/search.png"
+               alt
+               class="img" />
           <div class="secach-input">
-            <input
-              type="text"
-              placeholder="搜索"
-              bindconfirm="handleProxy"
-              data-comkey="0"
-              data-eventid="0"
-              selection-start="-1"
-              selection-end="-1"
-              cursor="-1"
-              comkey="0"
-              @input="sousuo"
-            />
+            <input type="text"
+                   placeholder="搜索"
+                   bindconfirm="handleProxy"
+                   data-comkey="0"
+                   data-eventid="0"
+                   selection-start="-1"
+                   selection-end="-1"
+                   cursor="-1"
+                   comkey="0"
+                   @input="sousuo" />
           </div>
         </div>
         <div class="btn">取消</div>
       </div>
     </div>
-    <div class="histort">
+    <div class="histort"
+         v-if="fuzzySearch.length <= 0 || fuzzySearch==null">
       <div class="historys">
         <div class="title">历史搜索</div>
-        <img src="/static/images/del.png" alt class="title_img" />
+        <img src="/static/images/del.png"
+             alt
+             class="title_img" />
       </div>
       <div class="choice">
         <div class="choice_item">8555</div>
-        <div class="choice_item">8555</div>
-        <div class="choice_item">8555</div>
-        <div class="choice_item">8555</div>
-        <div class="choice_item">8555</div>
-        <div class="choice_item">8555</div>
       </div>
     </div>
-    <div class="list">
+    <div class="list"
+         v-else>
       <div class="wrap">
         <div class="nav">
           <div class="nav_title">
@@ -46,15 +45,15 @@
           </div>
         </div>
         <div class="centers">
-          <div
-            class="dler"
-            v-for="(item,index) in fuzzySearch"
-            :key="index"
-            @click="searchPid(item.pid)"
-          >
+          <div class="dler"
+               v-for="(item,index) in fuzzySearch"
+               :key="index"
+               @click="searchPid(item.pid)">
             <div class="dl">
               <div class="dll">
-                <img :src="item.mainImgUrl" alt mode="widthFix" />
+                <img :src="item.mainImgUrl"
+                     alt
+                     mode="widthFix" />
               </div>
             </div>
             <div class="dd">
@@ -73,12 +72,13 @@
 <script>
 import { mapState, mapActions } from "vuex";
 export default {
-  data() {
+  data () {
     return {
       queryWord: "",
       queryType: 0,
       querySort: "asc",
-      pageIndex: 1
+      pageIndex: 1,
+      ind: 1
     };
   },
   computed: {
@@ -86,20 +86,23 @@ export default {
       fuzzySearch: state => state.index.fuzzySearch
     })
   },
+  onReachBottom () {
+    let index = this.ind
+    index++
+    this.ind = index
+    this.fuzzySearchs({ queryWord: this.queryWord, queryType: this.queryType, querySort: this.querySort, pageIndex: index });
+  },
   methods: {
     ...mapActions("index", ["fuzzySearchs"]),
-    sousuo(e) {
-      let that = this;
-      let queryWord = e.target.value;
-      let queryType = that.queryType;
-      let querySort = that.querySort;
-      let pageIndex = that.pageIndex;
+    sousuo (e) {
+      this.queryWord = e.target.value;
+      let that = this
       clearTimeout(clock);
-      var clock = setTimeout(function() {
-        that.fuzzySearchs({ queryWord, queryType, querySort, pageIndex });
+      var clock = setTimeout(function () {
+        that.fuzzySearchs({ queryWord: that.queryWord, queryType: that.queryType, querySort: that.querySort, pageIndex: that.pageIndex });
       }, 2000);
     },
-    searchPid(pid) {
+    searchPid (pid) {
       wx.navigateTo({ url: `/pages/index/detail/main?pid=${pid}` });
     }
   }

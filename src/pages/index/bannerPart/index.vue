@@ -42,6 +42,9 @@ export default {
     ...mapState({
       goToBanPartData: state => state.index.bannerDatas
     })
+  },
+  onLoad () {
+    wx.setNavigationBarTitle({ title: this.goToBanPartData.specialName });
   }
 };
 </script>
@@ -56,12 +59,12 @@ export default {
 }
 .ban_top {
   width: 100%;
-  height: 910rpx;
+  height: 410rpx;
   margin-bottom: 15rpx;
 }
 .ban_img {
   width: 100%;
-  height: 795rpx;
+  height: 100%;
   background: orangered;
 }
 .ban_top p {
