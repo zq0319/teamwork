@@ -46,7 +46,7 @@
           </div>
         </div>
         <div class="centers">
-          <div class="dler" v-for="(item,index) in fuzzySearch" :key="index">
+          <div class="dler" v-for="(item,index) in fuzzySearch" :key="index" @click="searchPid(item.pid)">
             <div class="dl">
               <div class="dll">
                 <img :src="item.mainImgUrl" alt  mode="widthFix"/>
@@ -93,6 +93,9 @@ export default {
       var clock = setTimeout(function() {
         that.fuzzySearchs({ queryWord, queryType, querySort, pageIndex });
       }, 1500);
+    },
+    searchPid(pid){
+      wx.navigateTo({ url: `/pages/index/detail/main?pid=${pid}` });
     }
   }
 };

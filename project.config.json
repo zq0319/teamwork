@@ -3,6 +3,7 @@
 	"setting": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> acfd544bd289b37c3eaac2ef94c1e0c6ff1b87bf
 		"urlCheck": true,
@@ -16,6 +17,8 @@
 	"appid": "touristappid",
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> cc687231406daf62df2ac18771396c58f70c66fe
 		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
@@ -27,9 +30,23 @@
 	"miniprogramRoot": "dist/wx/",
 	"compileType": "miniprogram",
 	"appid": "wxa5d3048ea081d72d",
+<<<<<<< HEAD
 >>>>>>> 835a805798b3cc039d06d32515ca7cfb63b48a56
 =======
 >>>>>>> acfd544bd289b37c3eaac2ef94c1e0c6ff1b87bf
+=======
+=======
+		"urlCheck": true,
+		"es6": false,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"miniprogramRoot": "dist/wx/",
+	"compileType": "miniprogram",
+	"appid": "touristappid",
+>>>>>>> 631457f0eb9fdb54724596ea9701038fae20b605
+>>>>>>> cc687231406daf62df2ac18771396c58f70c66fe
 	"projectname": "accumulate",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},

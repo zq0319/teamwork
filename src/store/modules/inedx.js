@@ -1,80 +1,99 @@
-import { topAll, contentAll } from '../../server/index'
+import { topAll, contentAll, dwonAll, detailStr, detailPicture, detailAddress, childsAll, tabArrayStyle,fuzzySearch} from '../../server/index'
 const state = {
   topAll: [],
   contnetAll: [],
+  dwonAlls: [],
+  detailStr: {},
+  detailStrImgsAll: [],
+  detailAddressObj: {},
+  scrollChildsAlls: [],
+  tabsArrayFnTop: [],
   fuzzySearch: []
 }
 
 const actions = {
   //头部数据
-  async scrollAll({ commit }, options) {
-    // var data = await topAll(options)
-    // console.log(data, '..............8520.')
-    wx.request({
-      url: 'https://upapi.jinaup.com/api/open/product/category/sub/1', //开发者服务器接口地址",
-      data: options, //请求的参数",
-      method: 'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      dataType: 'json', //如果设为json，会尝试对返回的数据做一次 JSON.parse
-      success: res => {
-        if (res.data.res_code) {
-          commit('topAll', res.data.result)
-        }
-      }
-    });
+  async scrollAll ({ commit }, payload) {
+    let data = await topAll(payload)
+    data.result.unshift({ cname: '今日推荐' })
+    commit('topAll', data.result)
   },
   // 轮播图片
-  async bannerimgUrl({ commit }, options) {
-    // var data = await contentAll(options)
-    // console.log(data, '...............')
-    wx.request({
-      url: 'https://upapi.jinaup.com/api/open/page/home/list/1.0.0', //开发者服务器接口地址",
-      data: options, //请求的参数",
-      method: 'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      dataType: 'json', //如果设为json，会尝试对返回的数据做一次 JSON.parse
-      success: res => {
-        if (res.data.res_code) {
-          commit('contentAll', res.data.result)
-        }
-      }
-    });
+  async bannerimgUrl ({ commit }, payload) {
+    var data = await contentAll(payload)
+    commit('contentAll', data.result)
   },
-  async fuzzySearchs({ commit }, options) {
-    wx.request({
-      url: `https://upapi.jinaup.com/api/open/search/query/1.0.0`, //开发者服务器接口地址",
-      // url: `https://apis.map.qq.com/ws/place/v1/suggestion/?region=${options.selector[options.index]}&keyword=${options.title}&key=LRIBZ-N7L6D-R6M44-PM5RE-GTERH-V2F7E`,
-      data: options, //请求的参数",
-      method: 'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      dataType: 'json', //如果设为json，会尝试对返回的数据做一次 JSON.parse
-      success: res => {
-        if (res.data.res_code) {
-          commit('fuzzySearch', res.data.result)
-        }
-      }
-    })
+  // 上拉数据
+  async dwonAll ({ commit }, payload) {
+    var data = await dwonAll(payload)
+    commit('cdwonAll', [...state.dwonAlls, ...data.result])
+  },
+  //详情页面
+  async detail ({ commit }, payload) {
+    var data = await detailStr(payload)
+    commit('detailAll', data.result)
+
+    return data.result
+  },
+  //详情图片
+  async detailStrImg ({ commit }, payload) {
+    var data = await detailPicture(payload)
+    commit('detailStrImgs', data.result)
+  },
+  //详情提示
+  async detailAddress ({ commit }, payload) {
+    var data = await detailAddress(payload)
+    commit('detailAddressO', data)
+  },
+  //srcoll数据2.0
+  async scrollChildsAll ({ commit }, payload) {
+    var data = await childsAll(payload)
+    commit('scrollChildsAlls', data.result)
+  },
+  //tab状态数据
+  async tabsArray ({ commit }, payload) {
+    var data = await tabArrayStyle(payload)
+    console.log(payload.pageIndex !== 1)
+    if (payload.pageIndex !== 1) {
+      commit('tabsArrayFn', [...state.tabsArrayFnTop, ...data.result])
+    } else {
+      commit('tabsArrayFn', data.result)
+    }
+  },
+  //模糊搜索
+  async fuzzySearchs ({ commit }, payload) {
+    var data = await fuzzySearch(payload)
+    commit('fuzzySearch', data.result)
   }
 }
 
 const mutations = {
-  topAll(state, options) {
-    // console.log(options)
+  topAll (state, options) {
     state.topAll = options
   },
-  contentAll(state, options) {
-    // console.log(options)
+  contentAll (state, options) {
     state.contnetAll = options
   },
+  cdwonAll (state, options) {
+    state.dwonAlls = options
+  },
+  detailAll (state, options) {
+    state.detailStr = options
+  },
+  detailStrImgs (state, options) {
+    state.detailStrImgsAll = options
+  },
+  detailAddressO (state, options) {
+    state.detailAddressObj = options
+  },
+  scrollChildsAlls (state, options) {
+    state.scrollChildsAlls = options
+  },
   fuzzySearch(state, options) {
-    // console.log(options)
     state.fuzzySearch = options
+  },
+  tabsArrayFn (state, options) {
+    state.tabsArrayFnTop = options
   },
 }
 

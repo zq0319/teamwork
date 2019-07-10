@@ -6,11 +6,15 @@
     </div>
     <!-- scroll -->
     <scroll-view scroll-x class="scrolltop">
-      <view class="address">今日推荐</view>
-      <view v-for="(item,ind) in topAll" :key="ind">{{item.cname}}</view>
+      <view
+        v-for="(item,ind) in topAll"
+        :key="ind"
+        @click="strtop(ind)"
+        :class="ind === index?'address':null"
+      >{{item.cname}}</view>
     </scroll-view>
     <!-- banner -->
-    <div class="banner" v-if="contnetAll[0].items">
+    <div class="banner" v-if="contnetAll[0]['items']">
       <swiper
         indicator-dots="false"
         autoplay="false"
@@ -137,7 +141,11 @@
 <script>
 import { mapState, mapActions } from "vuex";
 export default {
-  data() {},
+  data() {
+    return {
+      index: 0
+    };
+  },
   computed: {
     ...mapState({
       topAll: state => state.index.topAll,
@@ -146,6 +154,7 @@ export default {
     })
   },
   created() {
+    // console.log(this.scrollAll())
     this.scrollAll({
       parentId: 0
     });
@@ -162,7 +171,7 @@ export default {
       "gotobannerPart"
     ]),
     serch() {
-      wx.navigateTo({ url: `/pages/index/index-serch/main` });
+      wx.navigateTo({ url: `/pages/index/indexSerch/main` });
     },
     gotobanPart(item) {
       console.log(item);
@@ -176,11 +185,6 @@ export default {
 };
 </script>
 <style lang="scss">
-page,
-.wrapper {
-  width: 100%;
-  height: 100%;
-}
 .inputtop {
   width: 100%;
   height: 100rpx;
@@ -337,6 +341,77 @@ page,
     img {
       width: 100%;
       height: 250rpx;
+    }
+  }
+}
+.dwon_item {
+  width: 100%;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+
+  .down_items {
+    width: 100%;
+    // height: 200rpx;
+    margin-top: 30rpx;
+    display: flex;
+
+    .imgdiv {
+      width: 200rpx;
+      height: 200rpx;
+      display: flex;
+      padding: 15rpx;
+      justify-content: center;
+      align-items: center;
+    }
+    .item_content {
+      flex: 1;
+
+      > p {
+        width: 100%;
+        line-height: 60rpx;
+      }
+      .isFreeShipping {
+        span {
+          font-size: 22rpx;
+          border: 2rpx solid red;
+          border-radius: 5rpx;
+          color: red;
+          padding: 5rpx 7rpx;
+          margin: 0 10rpx;
+        }
+      }
+      .price {
+        width: 100%;
+        line-height: 100rpx;
+        display: flex;
+        font-size: 22rpx;
+        color: red;
+        > span {
+          font-size: 45rpx;
+          margin-right: 10rpx;
+        }
+        div {
+          display: flex;
+          align-items: center;
+          margin-right: 10rpx;
+
+          img {
+            width: 60rpx;
+            height: 20rpx;
+          }
+        }
+        > a {
+          height: 22rpx;
+          line-height: 22rpx;
+          position: relative;
+          top: 40rpx;
+          background: #eee;
+        }
+      }
+    }
+    img {
+      width: 100%;
+      height: 100%;
     }
   }
 }
