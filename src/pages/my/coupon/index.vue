@@ -1,38 +1,35 @@
 <template>
   <div class="result">
     <div class="nav">
-      <div :class="{'selected':tab === 1}"
-           @click="changTab(1)">未使用</div>
-      <div :class="{'selected':tab === 2}"
-           @click="changTab(2)">已使用</div>
-      <div :class="{'selected':tab === 3}"
-           @click="changTab(3)">已过期</div>
+      <div :class="{'selected':tab === 1}" @click="changTab(1)">未使用</div>
+      <div :class="{'selected':tab === 2}" @click="changTab(2)">已使用</div>
+      <div :class="{'selected':tab === 3}" @click="changTab(3)">已过期</div>
     </div>
     <div class="container">
       <div v-if="tab===1">
-        <img src="../../../../static/images/暂无.png"
-             alt="">
+        <img src="../../../../static/images/暂无.png" alt />
         <span>暂时没有可用的优惠券哦~</span>
       </div>
-      <div v-else-if="tab===2">中级</div>
-      <div v-else>高级</div>
+      <div v-else-if="tab===2">已使用</div>
+      <div v-else>已过期</div>
     </div>
   </div>
 </template>
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions } from "vuex";
 export default {
-  data () {
+  data() {
     return {
       tab: 1
-    }
+    };
   },
+  created() {},
   methods: {
-    changTab (index) {
+    changTab(index) {
       this.tab = index;
     }
   }
-}
+};
 </script>
 <style lang='scss'>
 .result {

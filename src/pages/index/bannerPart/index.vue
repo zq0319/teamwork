@@ -32,7 +32,12 @@
 <script>
 import { mapState, mapActions } from "vuex";
 export default {
-  data () { },
+  data() {
+    return {
+      con: 0,
+      num: 1
+    };
+  },
   computed: {
     ...mapState({
       goToBanPartData: state => state.index.bannerDatas

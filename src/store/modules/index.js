@@ -1,4 +1,4 @@
-import { topAll, contentAll, dwonAll, detailStr, detailPicture, detailAddress, childsAll, tabArrayStyle, goToBannerPart } from '../../server/index'
+import { topAll, contentAll, savedata, dwonAll, detailStr, detailPicture, detailAddress, takeActionlist, childsAll, tabArrayStyle, goToBannerPart, fuzzySearch } from '../../server/index'
 const state = {
   topAll: [],
   contnetAll: [],
@@ -8,7 +8,9 @@ const state = {
   detailAddressObj: {},
   scrollChildsAlls: [],
   tabsArrayFnTop: [],
-  bannerDatas: []
+  bannerDatas: [],
+  fuzzySearch: [],
+  activeData: []
 }
 const getters = {
 
@@ -68,6 +70,35 @@ const actions = {
     let data = await goToBannerPart(payload)
     console.log(data)
     commit('BannerPartData', data)
+  },
+  // 模糊搜索
+  async fuzzySearchs({ commit }, payload) {
+    let data = await fuzzySearch(payload)
+    commit('fuzzySearch', data.result)
+  },
+  // 保存收货地址
+  async takeAction({ commit }, payload) {
+    let data = await takeActionlist(payload)
+    console.log(data)
+    if (data.message === "成功") {
+      wx.showToast({
+        title: "保存成功",
+        icon: "none"
+      });
+      // wx.navigateTo({ url: '/pages/my/address/main' });
+      // commit('takeActionReply', payload)
+    } else {
+      wx.showToast({
+        title: "保存是不，请稍后再试",
+        icon: "none"
+      });
+    }
+
+  },
+  //实名认证保存
+  async savearr({ commit }, payload) {
+    var data = await savedata(payload)
+    return data
   }
 }
 const mutations = {
@@ -97,6 +128,13 @@ const mutations = {
   },
   BannerPartData(state, options) {
     state.bannerDatas = options.result
+  },
+  fuzzySearch(state, options) {
+    state.fuzzySearch = options
+  },
+  takeActionReply(state, options) {
+    state.activeData = options
+    console.log(options, 'options.................')
   }
 }
 

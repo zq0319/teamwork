@@ -5,126 +5,151 @@
       <div @click="serch">搜索</div>
     </div>
     <!-- scroll -->
-    <scroll-view scroll-x
-                 class="scrolltop">
-      <view v-for="(item,ind) in topAll"
-            :key="ind"
-            @click="strtop(ind)"
-            :class="ind === index?'address':null">{{item.cname}}</view>
+    <scroll-view scroll-x class="scrolltop">
+      <view
+        v-for="(item,ind) in topAll"
+        :key="ind"
+        @click="strtop(ind)"
+        :class="ind === index?'address':null"
+      >{{item.cname}}</view>
     </scroll-view>
     <!-- banner -->
-    <div class="banner"
-         v-if="contnetAll[0]['items']">
-      <swiper indicator-dots="false"
-              autoplay="false"
-              interval="5000"
-              circular="true"
-              duration="1000"
-              class="banner_swiper">
-        <swiper-item v-for="(item,index) in contnetAll[0]['items']"
-                     :key="index"
-                     class="banner_item">
-          <image :src="item.imgUrl"
-                 @click="gotobanPart(item)" />
+    <div class="banner" v-if="contnetAll[0]['items']">
+      <swiper
+        indicator-dots="false"
+        autoplay="false"
+        interval="5000"
+        circular="true"
+        duration="1000"
+        class="banner_swiper"
+      >
+        <swiper-item
+          v-for="(item,index) in contnetAll[0]['items']"
+          :key="index"
+          class="banner_item"
+        >
+          <image :src="item.imgUrl" @click="gotobanPart(item)" />
         </swiper-item>
       </swiper>
     </div>
     <!--  link图片-->
-    <div v-if="contnetAll[1].items"
-         class="linkUrl">
-      <div v-for="(item,i) in contnetAll[1].items"
-           :key="i">
-        <img :src="item.imgUrl"
-             alt />
+    <div v-if="contnetAll[1].items" class="linkUrl">
+      <div v-for="(item,i) in contnetAll[1].items" :key="i">
+        <img :src="item.imgUrl" alt />
       </div>
     </div>
     <!-- 内容 -->
     <div v-if="contnetAll.length">
       <div class="content">
-        <div class="contnet_top"><img :src="contnetAll[3].pictUrl"
-               alt=""></div>
+        <div class="contnet_top">
+          <img :src="contnetAll[3].pictUrl" alt />
+        </div>
         <div class="contnet_title">
-          <div><span>精选好物</span> | <span>等你来抢</span></div>
+          <div>
+            <span>精选好物</span> |
+            <span>等你来抢</span>
+          </div>
           <div class="tops">更多</div>
         </div>
         <div class="content_con">
-          <div v-for="(item,index) in contnetAll[4].items"
-               :key="index"
-               @click="clickDetail(item.jumpUrl)">
-            <img :src="item.imgUrl"
-                 alt="">
+          <div
+            v-for="(item,index) in contnetAll[4].items"
+            :key="index"
+            @click="clickDetail(item.jumpUrl)"
+          >
+            <img :src="item.imgUrl" alt />
             <p>{{item.title}}</p>
             <span>￥{{item.salesPrice}}</span>
           </div>
         </div>
       </div>
       <div class="content">
-        <div class="contnet_top"><img :src="contnetAll[5].pictUrl"
-               alt=""></div>
+        <div class="contnet_top">
+          <img :src="contnetAll[5].pictUrl" alt />
+        </div>
         <div class="contnet_title">
-          <div><span>精选好物</span> | <span>等你来抢</span></div>
+          <div>
+            <span>精选好物</span> |
+            <span>等你来抢</span>
+          </div>
           <div class="tops">更多</div>
         </div>
         <div class="content_con">
-          <div v-for="(item,index) in contnetAll[6].items"
-               :key="index"
-               @click="clickDetail(item.jumpUrl)">
-            <img :src="item.imgUrl"
-                 alt="">
+          <div
+            v-for="(item,index) in contnetAll[6].items"
+            :key="index"
+            @click="clickDetail(item.jumpUrl)"
+          >
+            <img :src="item.imgUrl" alt />
             <p>{{item.title}}</p>
             <span>￥{{item.salesPrice}}</span>
           </div>
         </div>
       </div>
       <div class="content">
-        <div class="contnet_top"><img :src="contnetAll[7].pictUrl"
-               alt=""></div>
+        <div class="contnet_top">
+          <img :src="contnetAll[7].pictUrl" alt />
+        </div>
         <div class="contnet_title">
-          <div><span>精选好物</span> | <span>等你来抢</span></div>
+          <div>
+            <span>精选好物</span> |
+            <span>等你来抢</span>
+          </div>
           <div class="tops">更多</div>
         </div>
         <div class="content_con">
-          <div v-for="(item,index) in contnetAll[8].items"
-               :key="index"
-               @click="clickDetail(item.jumpUrl)">
-            <img :src="item.imgUrl"
-                 alt="">
+          <div
+            v-for="(item,index) in contnetAll[8].items"
+            :key="index"
+            @click="clickDetail(item.jumpUrl)"
+          >
+            <img :src="item.imgUrl" alt />
             <p>{{item.title}}</p>
             <span>￥{{item.salesPrice}}</span>
           </div>
         </div>
       </div>
       <div class="content">
-        <div class="contnet_top"><img :src="contnetAll[9].pictUrl"
-               alt=""></div>
+        <div class="contnet_top">
+          <img :src="contnetAll[9].pictUrl" alt />
+        </div>
         <div class="contnet_title">
-          <div><span>精选好物</span> | <span>等你来抢</span></div>
+          <div>
+            <span>精选好物</span> |
+            <span>等你来抢</span>
+          </div>
           <div class="tops">更多</div>
         </div>
         <div class="content_con">
-          <div v-for="(item,index) in contnetAll[10].items"
-               :key="index"
-               @click="clickDetail(item.jumpUrl)">
-            <img :src="item.imgUrl"
-                 alt="">
+          <div
+            v-for="(item,index) in contnetAll[10].items"
+            :key="index"
+            @click="clickDetail(item.jumpUrl)"
+          >
+            <img :src="item.imgUrl" alt />
             <p>{{item.title}}</p>
             <span>￥{{item.salesPrice}}</span>
           </div>
         </div>
       </div>
       <div class="content">
-        <div class="contnet_top"><img :src="contnetAll[11].pictUrl"
-               alt=""></div>
+        <div class="contnet_top">
+          <img :src="contnetAll[11].pictUrl" alt />
+        </div>
         <div class="contnet_title">
-          <div><span>精选好物</span> | <span>等你来抢</span></div>
+          <div>
+            <span>精选好物</span> |
+            <span>等你来抢</span>
+          </div>
           <div class="tops">更多</div>
         </div>
         <div class="content_con">
-          <div v-for="(item,index) in contnetAll[12].items"
-               :key="index"
-               @click="clickDetail(item.jumpUrl)">
-            <img :src="item.imgUrl"
-                 alt="">
+          <div
+            v-for="(item,index) in contnetAll[12].items"
+            :key="index"
+            @click="clickDetail(item.jumpUrl)"
+          >
+            <img :src="item.imgUrl" alt />
             <p>{{item.title}}</p>
             <span>￥{{item.salesPrice}}</span>
           </div>
@@ -133,19 +158,27 @@
     </div>
     <!-- dwon数据 -->
     <div class="dwon_item">
-      <div v-for="(item,index) in dwonAlls"
-           class="down_items"
-           @click="clickDetail(item.productVo.pid)"
-           :key="index">
-        <div class="imgdiv"><img :src="item.productVo.mainImgUrl"
-               alt=""></div>
+      <div
+        v-for="(item,index) in dwonAlls"
+        class="down_items"
+        @click="clickDetail(item.productVo.pid)"
+        :key="index"
+      >
+        <div class="imgdiv">
+          <img :src="item.productVo.mainImgUrl" alt />
+        </div>
         <div class="item_content">
           <p>{{item.productVo.title}}</p>
-          <div class="isFreeShipping"><span v-if="item.productVo.isFreeShipping">包邮</span><span v-if="item.productVo.isFreeTax">包税</span></div>
-          <div class="price"><span>￥{{item.productVo.salesPrice}}</span>
-            <div>￥{{item.productVo.vipPrice}}<img v-if="item.productVo.vipPrice"
-                   src="/static/images/黑卡@2x.png"
-                   alt=""></div>
+          <div class="isFreeShipping">
+            <span v-if="item.productVo.isFreeShipping">包邮</span>
+            <span v-if="item.productVo.isFreeTax">包税</span>
+          </div>
+          <div class="price">
+            <span>￥{{item.productVo.salesPrice}}</span>
+            <div>
+              ￥{{item.productVo.vipPrice}}
+              <img v-if="item.productVo.vipPrice" src="/static/images/黑卡@2x.png" alt />
+            </div>
             <a>赚{{item.productVo.earnMoney}}</a>
           </div>
         </div>
@@ -156,10 +189,10 @@
 <script>
 import { mapState, mapActions } from "vuex";
 export default {
-  data () {
+  data() {
     return {
       index: 0
-    }
+    };
   },
   computed: {
     ...mapState({
@@ -168,51 +201,56 @@ export default {
       dwonAlls: state => state.index.dwonAlls
     })
   },
-  created () {
+  created() {
     // console.log(this.scrollAll())
     this.scrollAll({
       parentId: 0
-    })
-    this.bannerimgUrl("")
+    });
+    this.bannerimgUrl("");
     this.dwonAll({
       pageIndex: 1
-    })
+    });
   },
-  onReachBottom () {
+  onReachBottom() {
     let index = 1;
-    index++
+    index++;
     this.dwonAll({
       pageIndex: index
-    })
+    });
   },
   methods: {
-    ...mapActions('index', ['scrollAll', 'bannerimgUrl', 'dwonAll', 'gotobannerPart']),
-    serch () {
-      wx.navigateTo({ url: `/pages/index/searchFor/main` });
+    ...mapActions("index", [
+      "scrollAll",
+      "bannerimgUrl",
+      "dwonAll",
+      "gotobannerPart"
+    ]),
+    serch() {
+      wx.navigateTo({ url: `/pages/index/indexSerch/main` });
     },
-    clickDetail (e) {
-      let str
-      if (typeof (e) !== 'number') {
-        str = e.split("&")[1].split("=")[1]
+    clickDetail(e) {
+      let str;
+      if (typeof e !== "number") {
+        str = e.split("&")[1].split("=")[1];
       } else {
         str = e;
       }
 
-      console.log(str)
+      console.log(str);
       wx.navigateTo({ url: `/pages/index/detail/main?pid=${str}` });
     },
-    strtop (ind) {
+    strtop(ind) {
       if (ind === 0) {
-        return
+        return;
       } else {
-        console.log(ind)
+        console.log(ind);
         wx.navigateTo({ url: `/pages/index/top-array/main?page=${ind}` });
       }
     },
-    gotobanPart (item) {
+    gotobanPart(item) {
       console.log(item);
       this.gotobannerPart({ siid: item.contentValue });
-      wx.navigateTo({ url: `/pages/index/bannerPart/main` })
+      wx.navigateTo({ url: `/pages/index/bannerPart/main` });
     }
   }
 };
