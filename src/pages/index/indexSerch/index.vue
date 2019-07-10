@@ -145,20 +145,20 @@ export default {
     },
     //模糊搜索
     confirm: function(e) {
-        let that = this;
-        this.queryWord = e.target.value;
-        that.fuzzySearchs({
-          queryWord: that.queryWord,
-          queryType: that.queryType,
-          querySort: that.querySort,
-          pageIndex: that.pageIndex
-        });
-        let searchHistory = null;
-        this.list.push(this.queryWord);
-        wx.setStorage({
-          key: "searchHistory",
-          data: JSON.stringify(this.list)
-        });
+      let that = this;
+      this.queryWord = e.target.value;
+      that.fuzzySearchs({
+        queryWord: that.queryWord,
+        queryType: that.queryType,
+        querySort: that.querySort,
+        pageIndex: that.pageIndex
+      });
+      let searchHistory = null;
+      this.list.push(this.queryWord);
+      wx.setStorage({
+        key: "searchHistory",
+        data: JSON.stringify(this.list)
+      });
     },
     //点击搜索历史
     button(e) {
@@ -352,7 +352,7 @@ page,
             color: #fc5d7b;
           }
           .span {
-            font-size: 22rpx;
+            font-size: 20rpx;
             color: #a89831;
           }
         }
