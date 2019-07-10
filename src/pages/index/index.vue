@@ -208,7 +208,6 @@ export default {
     })
   },
   created() {
-    // console.log(this.scrollAll())
     this.scrollAll({
       parentId: 0
     });
@@ -236,15 +235,12 @@ export default {
       } else {
         str = e;
       }
-
-      console.log(str);
       wx.navigateTo({ url: `/pages/index/detail/main?pid=${str}` });
     },
     strtop(ind) {
       if (ind === 0) {
         return;
       } else {
-        console.log(ind);
         wx.navigateTo({ url: `/pages/index/top-array/main?page=${ind}` });
       }
     }

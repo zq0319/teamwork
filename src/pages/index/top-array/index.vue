@@ -93,7 +93,6 @@ export default {
         cid: item.cid,
         sortType: this.str,
       })
-      console.log(ind, item)
     },
     tabSstr (ispageStatus) {
       if (ispageStatus === 3) {

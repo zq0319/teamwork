@@ -63,7 +63,11 @@ const actions = {
   //模糊搜索
   async fuzzySearchs ({ commit }, payload) {
     var data = await fuzzySearch(payload)
-    commit('fuzzySearch', data.result)
+    if (payload.pageIndex !== 1) {
+      commit('fuzzySearch', [...state.fuzzySearch, ...data.result])
+    } else {
+      commit('fuzzySearch', data.result)
+    }
   }
 }
 
