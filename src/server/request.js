@@ -45,3 +45,13 @@ export function tabArrayStyle(options) {
 export function goToBannerPart(options) {
   return fly.post(`sepcial/query/1.0.0`, options)
 }
+
+// 模糊搜索
+export function fuzzySearch(options) {
+  return fly.post('search/query/1.0.0', options)
+}
+
+// 保存收货地址
+export function takeActionlist(options) {
+  return fly.post('user/address/addAddress/1.0.0', options)
+}
