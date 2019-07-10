@@ -1,9 +1,11 @@
 {
   "pages": [
+    "pages/index/payment/main",
+    "pages/index/detail/main",
+    "pages/my/myorder/main",
     "pages/index/main",
     "pages/index/bannerPart/main",
-    "pages/index/searchFor/main",
-    "pages/index/detail/main",
+    "pages/index/indexSerch/main",
     "pages/index/top-array/main",
     "pages/my/main",
     "pages/my/coupon/main",

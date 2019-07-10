@@ -6,7 +6,9 @@
         <p>{{goToBanPartData.specialName}}</p>
       </div>
       <div class="wrap_content">
-        <div class="wrap_content_title">—— ◆ {{goToBanPartData.anchors[0].anchorDesc}} ◆ ——</div>
+        <div
+          class="wrap_content_title"
+        >—— ◆ {{goToBanPartData.specialName == "夏季出行专场" ? goToBanPartData.anchors[1].anchorDesc :goToBanPartData.anchors[0].anchorDesc}} ◆ ——</div>
         <div
           class="wrap_content_shop"
           v-for="(items,index) in goToBanPartData.anchors[0].products"
@@ -30,7 +32,12 @@
 <script>
 import { mapState, mapActions } from "vuex";
 export default {
-  data() {},
+  data() {
+    return {
+      con: 0,
+      num: 1
+    };
+  },
   computed: {
     ...mapState({
       goToBanPartData: state => state.index.bannerDatas
