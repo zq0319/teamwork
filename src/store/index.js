@@ -14,14 +14,5 @@ export default new Vuex.Store({
   modules: {
     index
   },
-  state:{
-    info:{}
-  },
-  mutations: {
-    // 更新全局的state
-    updateState(state, payload){
-      state.info = payload;
-    }
-  },
   plugins: [createLogger()]
 })

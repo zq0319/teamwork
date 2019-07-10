@@ -55,3 +55,10 @@ export function fuzzySearch(options) {
 export function takeActionlist(options) {
   return fly.post('user/address/addAddress/1.0.0', options)
 }
+
+
+//实名认证保存
+export function savedata(options) {
+  return fly.post('user/auth/editBase64/1.0.0', options)
+}
+

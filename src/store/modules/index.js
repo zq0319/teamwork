@@ -1,4 +1,4 @@
-import { topAll, contentAll, dwonAll, detailStr, detailPicture, detailAddress, takeActionlist, childsAll, tabArrayStyle, goToBannerPart, fuzzySearch } from '../../server/index'
+import { topAll, contentAll, savedata, dwonAll, detailStr, detailPicture, detailAddress, takeActionlist, childsAll, tabArrayStyle, goToBannerPart, fuzzySearch } from '../../server/index'
 const state = {
   topAll: [],
   contnetAll: [],
@@ -94,6 +94,11 @@ const actions = {
       });
     }
 
+  },
+  //实名认证保存
+  async savearr({ commit }, payload) {
+    var data = await savedata(payload)
+    return data
   }
 }
 const mutations = {

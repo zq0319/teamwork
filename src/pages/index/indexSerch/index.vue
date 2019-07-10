@@ -46,10 +46,15 @@
           </div>
         </div>
         <div class="centers">
-          <div class="dler" v-for="(item,index) in fuzzySearch" :key="index" @click="searchPid(item.pid)">
+          <div
+            class="dler"
+            v-for="(item,index) in fuzzySearch"
+            :key="index"
+            @click="searchPid(item.pid)"
+          >
             <div class="dl">
               <div class="dll">
-                <img :src="item.mainImgUrl" alt  mode="widthFix"/>
+                <img :src="item.mainImgUrl" alt mode="widthFix" />
               </div>
             </div>
             <div class="dd">
@@ -94,7 +99,7 @@ export default {
         that.fuzzySearchs({ queryWord, queryType, querySort, pageIndex });
       }, 2000);
     },
-    searchPid(pid){
+    searchPid(pid) {
       wx.navigateTo({ url: `/pages/index/detail/main?pid=${pid}` });
     }
   }
@@ -238,7 +243,7 @@ page,
         flex-direction: column;
         margin-top: 8rpx;
         .dl {
-          height:350rpx;
+          height: 350rpx;
           padding: 60rpx 46rpx 30rpx 28rpx;
           img {
             width: 100%;
