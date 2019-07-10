@@ -81,6 +81,7 @@ export default {
       var url = "/pages/my/shipments/main"
       wx.navigateTo({ url })
     },
+
     Receiving () {//点击待收货
       var url = "/pages/my/receiving/main"
       wx.navigateTo({ url })
