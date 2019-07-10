@@ -57,6 +57,7 @@ export default {
       index: '',
       topAlls: [{ name: '综合', ispageStatus: 1 }, { name: '最新', ispageStatus: 2 }, { name: '价格', ispageStatus: 3 }],
       str: 1,
+      ind: 1
     }
   },
   computed: {
@@ -113,8 +114,10 @@ export default {
     }
   },
   onReachBottom () {
-    let index = 1;
+    let index = this.ind
     index++
+    this.ind = index
+    console.log(this.ind)
     this.tabsArray({
       pageIndex: index,
       cid: this.topAll[this.index * 1].cid,

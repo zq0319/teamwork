@@ -33,7 +33,8 @@
     <div v-if="contnetAll[1].items"
          class="linkUrl">
       <div v-for="(item,i) in contnetAll[1].items"
-           :key="i">
+           :key="i"
+           @click="gotobanPart(item)">
         <img :src="item.imgUrl"
              alt />
       </div>
@@ -41,7 +42,8 @@
     <!-- 内容 -->
     <div v-if="contnetAll.length">
       <div class="content">
-        <div class="contnet_top"><img :src="contnetAll[3].pictUrl"
+        <div class="contnet_top"
+             @click="gotobanPart(contnetAll[3])"><img :src="contnetAll[3].pictUrl"
                alt=""></div>
         <div class="contnet_title">
           <div><span>精选好物</span> | <span>等你来抢</span></div>
@@ -59,7 +61,8 @@
         </div>
       </div>
       <div class="content">
-        <div class="contnet_top"><img :src="contnetAll[5].pictUrl"
+        <div class="contnet_top"
+             @click="gotobanPart(contnetAll[5])"><img :src="contnetAll[5].pictUrl"
                alt=""></div>
         <div class="contnet_title">
           <div><span>精选好物</span> | <span>等你来抢</span></div>
@@ -77,7 +80,8 @@
         </div>
       </div>
       <div class="content">
-        <div class="contnet_top"><img :src="contnetAll[7].pictUrl"
+        <div class="contnet_top"
+             @click="gotobanPart(contnetAll[7])"><img :src="contnetAll[7].pictUrl"
                alt=""></div>
         <div class="contnet_title">
           <div><span>精选好物</span> | <span>等你来抢</span></div>
@@ -95,7 +99,8 @@
         </div>
       </div>
       <div class="content">
-        <div class="contnet_top"><img :src="contnetAll[9].pictUrl"
+        <div class="contnet_top"
+             @click="gotobanPart(contnetAll[9])"><img :src="contnetAll[9].pictUrl"
                alt=""></div>
         <div class="contnet_title">
           <div><span>精选好物</span> | <span>等你来抢</span></div>
@@ -113,7 +118,8 @@
         </div>
       </div>
       <div class="content">
-        <div class="contnet_top"><img :src="contnetAll[11].pictUrl"
+        <div class="contnet_top"
+             @click="gotobanPart(contnetAll[11])"><img :src="contnetAll[11].pictUrl"
                alt=""></div>
         <div class="contnet_title">
           <div><span>精选好物</span> | <span>等你来抢</span></div>
@@ -188,7 +194,7 @@ export default {
   methods: {
     ...mapActions('index', ['scrollAll', 'bannerimgUrl', 'dwonAll', 'gotobannerPart']),
     serch () {
-      wx.navigateTo({ url: `/pages/index/searchFor/main` });
+      wx.navigateTo({ url: `/pages/index/indexSerch/main` });
     },
     clickDetail (e) {
       let str
@@ -210,8 +216,13 @@ export default {
       }
     },
     gotobanPart (item) {
-      console.log(item);
-      this.gotobannerPart({ siid: item.contentValue });
+      let str = ""
+      if (item.contentValue) {
+        str = item.contentValue
+      } else {
+        str = item.jumpUrl.split("&")[1].split("=")[1]
+      }
+      this.gotobannerPart({ siid: str });
       wx.navigateTo({ url: `/pages/index/bannerPart/main` })
     }
   }
