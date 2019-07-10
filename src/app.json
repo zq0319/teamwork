@@ -1,18 +1,20 @@
 {
   "pages": [
     "pages/index/main",
+    "pages/index/indexSerch/main",
+    "pages/index/detail/main",
+    "pages/index/top-array/main",
     "pages/my/main",
     "pages/my/coupon/main",
     "pages/my/address/main",
     "pages/my/address/addpage/main",
     "pages/my/cutomer/main",
+    "pages/my/myorder/main",
     "pages/my/realname/main",
-    "pages/detail/main",
-    "pages/index/index-serch/main",
     "pages/my/payment/main",
-    "pages/my/shipments/main",
     "pages/my/receiving/main",
-    "pages/my/myorder/main"
+    "pages/my/shipments/main",
+    "pages/index/bannerPart/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

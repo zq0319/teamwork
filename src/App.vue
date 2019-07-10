@@ -50,4 +50,9 @@ export default {
   margin: 0px;
   list-style: none;
 }
+page,
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
 </style>

@@ -11,8 +11,8 @@
         </div>
         <div>
             <view class="section">
-                <picker mode="region" bindchange="bindRegionChange" value="{region}" custom-item="全部">
-                    <view class="picker"><span class="address">所在地区</span><span class="backpage">></span></view>
+                <picker mode="region" @change="bindRegionChange" custom-item="全部">
+                    <view class="picker"><span class="address">所在地区{{region[0]}},{{region[1]}},{{region[2]}}</span><span class="backpage">></span></view>
                 </picker>
                 </view>
             </view>
@@ -52,11 +52,12 @@ export default {
   created () {
   },
   methods: {
-    bindRegionChange: function (e) {
-    this.setData({
-      region: e.detail.value
-    })
-  }
+        bindRegionChange(e) {
+            console.log('picker发送选择改变，携带值为', e.detail.value)
+            this.setData({
+            region: e.detail.value
+        })
+    }
   } 
 }
 </script>
@@ -71,35 +72,35 @@ page{
     height:220px;
     background:#fff;
 }
-.top div{
-    width:100%;
-    height:50px;
-    border-bottom:1px solid #f6f6f6;
-    display:flex;
-    font-size:14px;
-    color:#999;
-    align-items:center;
-    padding:0 20px;
+.top div {
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid #f6f6f6;
+  display: flex;
+  font-size: 14px;
+  color: #999;
+  align-items: center;
+  padding: 0 20px;
 }
-.result div span{
-    position:absolute;
-    right:15px;
+.result div span {
+  position: absolute;
+  right: 15px;
 }
-.bottom{
-    width:100%;
-    height:150px;
-    background:#fff;
-    margin-top:10px;
+.bottom {
+  width: 100%;
+  height: 150px;
+  background: #fff;
+  margin-top: 10px;
 }
-.title{
-    font-size:14px;
-    padding:10px 20px;
+.title {
+  font-size: 14px;
+  padding: 10px 20px;
 }
-.info{
-    display:flex;
-    align-items:center;
-    padding-bottom:30px;
-    border-bottom:1px solid #f6f6f6;
+.info {
+  display: flex;
+  align-items: center;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #f6f6f6;
 }
 .info div{
     font-size:14px;
@@ -108,24 +109,24 @@ page{
     border:1px solid #ccc;
     margin-left:15px;
 }
-.contbtn{
-    display:flex;
-    justify-content:space-between;
-    font-size:14px;
-    padding:18px;
+.contbtn {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding: 18px;
 }
-.save{
-    width:90%;
-    height:50px;
-    background:#33d6c5;
-    color:#fff;
-    text-align:center;
-    line-height:50px;
-    border-radius:10px;
-    margin:50px auto;
+.save {
+  width: 90%;
+  height: 50px;
+  background: #33d6c5;
+  color: #fff;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 10px;
+  margin: 50px auto;
 }
-.inp{
-    width:80%;
+.inp {
+  width: 80%;
 }
 .address{
     position:absolute;
