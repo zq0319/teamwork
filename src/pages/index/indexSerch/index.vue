@@ -7,23 +7,25 @@
                alt
                class="img" />
           <div class="secach-input">
-            <input type="text"
-                   placeholder="搜索"
-                   bindconfirm="handleProxy"
-                   data-comkey="0"
-                   data-eventid="0"
-                   selection-start="-1"
-                   selection-end="-1"
-                   cursor="-1"
-                   comkey="0"
-                   @input="sousuo" />
+            <input
+              type="text"
+              placeholder="搜索"
+              bindconfirm="handleProxy"
+              data-comkey="0"
+              data-eventid="0"
+              selection-start="-1"
+              selection-end="-1"
+              cursor="-1"
+              comkey="0"
+              @confirm="confirm($event)"
+              v-model="queryWord"
+            />
           </div>
         </div>
-        <div class="btn">取消</div>
+        <div class="btn" @click="btn">取消</div>
       </div>
     </div>
-    <div class="histort"
-         v-if="fuzzySearch.length <= 0 || fuzzySearch==null">
+    <div class="histort" v-if="fuzzySearch.length <= 0 || fuzzySearch==null">
       <div class="historys">
         <div class="title">历史搜索</div>
         <img src="/static/images/del.png"
@@ -31,29 +33,36 @@
              class="title_img" />
       </div>
       <div class="choice">
-        <div class="choice_item">8555</div>
+        <div
+          class="choice_item"
+          v-for="(item,index) in lists"
+          :key="index"
+          @click="button(item)"
+        >{{item}}</div>
       </div>
     </div>
-    <div class="list"
-         v-else>
+    <div class="list" v-else>
       <div class="wrap">
         <div class="nav">
           <div class="nav_title">
-            <div class="nav_list">综合</div>
-            <div class="nav_list">最新</div>
-            <div class="nav_list">价格</div>
+            <div
+              v-for="(item,index) in topAlls"
+              :key="index"
+              @click="tabSstr(item.queryType)"
+              class="nav_list"
+            >{{item.name}}</div>
           </div>
         </div>
         <div class="centers">
-          <div class="dler"
-               v-for="(item,index) in fuzzySearch"
-               :key="index"
-               @click="searchPid(item.pid)">
+          <div
+            class="dler"
+            v-for="(item,index) in fuzzySearch"
+            :key="index"
+            @click="searchPid(item.pid)"
+          >
             <div class="dl">
               <div class="dll">
-                <img :src="item.mainImgUrl"
-                     alt
-                     mode="widthFix" />
+                <img :src="item.mainImgUrl" alt mode="widthFix" />
               </div>
             </div>
             <div class="dd">
@@ -78,7 +87,14 @@ export default {
       queryType: 0,
       querySort: "asc",
       pageIndex: 1,
-      ind: 1
+      status: 0,
+      list: [],
+      lists: [],
+      topAlls: [
+        { name: "综合", queryType: 0 },
+        { name: "最新", queryType: 1 },
+        { name: "价格", queryType: 2 }
+      ]
     };
   },
   computed: {
@@ -86,24 +102,89 @@ export default {
       fuzzySearch: state => state.index.fuzzySearch
     })
   },
-  onReachBottom () {
-    let index = this.ind
-    index++
-    this.ind = index
-    this.fuzzySearchs({ queryWord: this.queryWord, queryType: this.queryType, querySort: this.querySort, pageIndex: index });
+  onReachBottom() {
+    let index = this.ind;
+    index++;
+    this.ind = index;
+    this.fuzzySearchs({
+      queryWord: this.queryWord,
+      queryType: this.queryType,
+      querySort: this.querySort,
+      pageIndex: index
+    });
+  },
+  onLoad(options) {
+    let that = this;
+    wx.getStorage({
+      key: "searchHistory",
+      success(res) {
+        that.lists = JSON.parse(res.data);
+      }
+    });
   },
   methods: {
     ...mapActions("index", ["fuzzySearchs"]),
-    sousuo (e) {
-      this.queryWord = e.target.value;
-      let that = this
-      clearTimeout(clock);
-      var clock = setTimeout(function () {
-        that.fuzzySearchs({ queryWord: that.queryWord, queryType: that.queryType, querySort: that.querySort, pageIndex: that.pageIndex });
-      }, 2000);
-    },
-    searchPid (pid) {
+    //跳详情
+    searchPid(pid) {
       wx.navigateTo({ url: `/pages/index/detail/main?pid=${pid}` });
+    },
+    //排序
+    tabSstr(queryType) {
+      let that = this;
+      if (queryType === 2) {
+        queryType = 2;
+        this.querySort = "desc";
+      } else if (this.querySort === "desc") {
+        queryType = 2;
+        this.querySort = "asc";
+      } else {
+        this.queryType = queryType;
+      }
+      this.fuzzySearchs({
+        queryWord: this.queryWord,
+        queryType: queryType,
+        querySort: this.querySort,
+        pageIndex: this.pageIndex
+      });
+    },
+    //模糊搜索
+    confirm: function(e) {
+      let that = this;
+      this.queryWord = e.target.value;
+      that.fuzzySearchs({
+        queryWord: that.queryWord,
+        queryType: that.queryType,
+        querySort: that.querySort,
+        pageIndex: that.pageIndex
+      });
+      let searchHistory = null;
+      this.list.push(this.queryWord);
+      wx.setStorage({
+        key: "searchHistory",
+        data: JSON.stringify(this.list)
+      });
+    },
+    //点击搜索历史
+    button(e) {
+      let that = this;
+      this.queryWord = e;
+      that.fuzzySearchs({
+        queryWord: that.queryWord,
+        queryType: that.queryType,
+        querySort: that.querySort,
+        pageIndex: that.pageIndex
+      });
+    },
+    //清空内容
+    btn() {
+      let that = this;
+      this.queryWord = "";
+      that.fuzzySearchs({
+        queryWord: "",
+        queryType: that.queryType,
+        querySort: that.querySort,
+        pageIndex: that.pageIndex
+      });
     }
   }
 };
@@ -275,7 +356,7 @@ page,
             color: #fc5d7b;
           }
           .span {
-            font-size: 22rpx;
+            font-size: 20rpx;
             color: #a89831;
           }
         }
