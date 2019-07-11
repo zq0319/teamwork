@@ -118,7 +118,21 @@ const actions = {
     } else {
       commit('fuzzySearch', data.result)
     }
-  }
+  },
+async speciFication ({ commit }, payload) {
+    var data = await speciFication(payload)
+    commit('speciFicationFn', data.result)
+  },
+  // 选择商品
+  async selectActionFn ({ commit }, payload) {
+    var data = await selectShoppings(payload)
+    commit('selectFn', data.result)
+  },
+  //订单请求
+  async orderActionFn ({ commit }, payload) {
+    var data = await order(payload)
+    commit('orderFn', data.result)
+  },
 }
 const mutations = {
   topAll (state, options) {
