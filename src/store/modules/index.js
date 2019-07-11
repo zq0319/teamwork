@@ -119,7 +119,7 @@ const actions = {
       commit('fuzzySearch', data.result)
     }
   },
-async speciFication ({ commit }, payload) {
+  async speciFication ({ commit }, payload) {
     var data = await speciFication(payload)
     commit('speciFicationFn', data.result)
   },
