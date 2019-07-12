@@ -109,14 +109,13 @@ export default {
       this.str = ispageStatus
     },
     detailStr (e) {
-      wx.navigateTo({ url: `/pages/index/detail/main?pid=${e}` });
+      wx.navigateTo({ url: `/pages/index/detail/main?pid=${e}`});
     }
   },
   onReachBottom () {
     let index = this.ind
     index++
     this.ind = index
-    console.log(this.ind)
     this.tabsArray({
       pageIndex: index,
       cid: this.topAll[this.index * 1].cid,

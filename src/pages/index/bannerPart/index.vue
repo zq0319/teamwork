@@ -2,20 +2,19 @@
   <div class="wrap">
     <div class="wrap_box">
       <div class="ban_top">
-        <img :src="goToBanPartData.specialImg"
-             class="ban_img"
-             alt />
+        <img :src="goToBanPartData.specialImg" class="ban_img" alt />
         <p>{{goToBanPartData.specialName}}</p>
       </div>
       <div class="wrap_content">
         <div class="wrap_content_title">—— ◆ {{goToBanPartData.anchors[0].anchorDesc}} ◆ ——</div>
-        <div class="wrap_content_shop"
-             v-for="(items,index) in goToBanPartData.anchors[0].products"
-             :key="index">
+        <div
+          class="wrap_content_shop"
+          v-for="(items,index) in goToBanPartData.anchors[0].products"
+          :key="index"
+          @click="searchPid(items.pid)"
+        >
           <div class="wrap_content_shop_left">
-            <img :src="items.mainImgUrl"
-                 class="wrap_content_shop_left_img"
-                 alt />
+            <img :src="items.mainImgUrl" class="wrap_content_shop_left_img" alt />
           </div>
           <div class="wrap_content_shop_right">
             <p class="wrap_content_shop_right_title">{{items.title}}</p>
@@ -43,7 +42,13 @@ export default {
       goToBanPartData: state => state.index.bannerDatas
     })
   },
-  onLoad () {
+  methods: {
+    //跳详情
+    searchPid(pid) {
+      wx.navigateTo({ url: `/pages/index/detail/main?pid=${pid}` });
+    }
+  },
+  onLoad() {
     wx.setNavigationBarTitle({ title: this.goToBanPartData.specialName });
   }
 };
@@ -65,14 +70,12 @@ export default {
 .ban_img {
   width: 100%;
   height: 100%;
-  background: orangered;
 }
 .ban_top p {
   width: 100%;
   height: 100rpx;
   line-height: 100rpx;
   font-size: 36rpx;
-  color: orangered;
   border-bottom: 2rpx solid #ececec;
   text-indent: 0.25rem;
 }
@@ -95,7 +98,6 @@ export default {
   width: 100%;
   height: 282rpx;
   display: flex;
-  /* align-items: center; */
   border-bottom: 20rpx solid #f6f6f6;
 }
 .wrap_content_shop_left {
@@ -109,7 +111,6 @@ export default {
 .wrap_content_shop_left_img {
   width: 100%;
   height: 100%;
-  background: orangered;
 }
 
 .wrap_content_shop_right {

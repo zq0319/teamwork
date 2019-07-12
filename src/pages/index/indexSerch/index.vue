@@ -3,9 +3,7 @@
     <div class="searchFor">
       <div class="search">
         <div class="secach-bg">
-          <img src="/static/images/search.png"
-               alt
-               class="img" />
+          <img src="/static/images/search.png" alt class="img" />
           <div class="secach-input">
             <input
               type="text"
@@ -28,9 +26,7 @@
     <div class="histort" v-if="fuzzySearch.length <= 0 || fuzzySearch==null">
       <div class="historys">
         <div class="title">历史搜索</div>
-        <img src="/static/images/del.png"
-             alt
-             class="title_img" />
+        <img src="/static/images/del.png" alt class="title_img" />
       </div>
       <div class="choice">
         <div
@@ -81,7 +77,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 export default {
-  data () {
+  data() {
     return {
       queryWord: "",
       queryType: 0,
