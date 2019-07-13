@@ -1,49 +1,37 @@
 <template>
   <div class="box">
-    <div class="wap-swiper"
-         v-if="detailStr.supplierProductPictureVoList.length">
-      <swiper autoplay="true"
-              indicator-dots="true">
-        <swiper-item v-for="(item,index) in detailStr.supplierProductPictureVoList"
-                     :key="index">
-          <img :src="item.imgUrl"
-               alt="">
+    <div class="wap-swiper" v-if="detailStr.supplierProductPictureVoList.length">
+      <swiper autoplay="true" indicator-dots="true">
+        <swiper-item v-for="(item,index) in detailStr.supplierProductPictureVoList" :key="index">
+          <img :src="item.imgUrl" alt />
         </swiper-item>
       </swiper>
     </div>
-    <div class="wap-swiper"
-         v-else>
-      <img :src="detailStr.mainImgUrl"
-           alt="">
+    <div class="wap-swiper" v-else>
+      <img :src="detailStr.mainImgUrl" alt />
     </div>
     <div class="tit">
       <div class="ones">
         <div class="price">￥{{detailStr.salesPrice}}</div>
         <div class="num">￥{{detailStr.vipPrice}}</div>
-        <img src="/static/images/黑卡@2x.png"
-             alt
-             class="_img" />
+        <img src="/static/images/黑卡@2x.png" alt class="_img" />
       </div>
-      <div class="earn">分享赚{{detailStr.memberDiscountPrice}}</div>
+      <div class="earn" @click="button">分享赚{{detailStr.memberDiscountPrice}}</div>
     </div>
     <div class="title">
       <div class="names">{{detailStr.title}}</div>
-      <div class="delivery"
-           v-if="isFreeShipping">快递包邮</div>
+      <div class="delivery" v-if="isFreeShipping">快递包邮</div>
     </div>
     <div class="list">
-      <div class="lis"
-           @click="detailStor">
+      <div class="lis" @click="detailStor">
         <div class="left">选择</div>
         <div class="right">
-          <div style="margin-left:5rpx"><span v-for="(item,index) in specification"
-                  :key="index">{{item.aname}}</span></div>
+          <div style="margin-left:5rpx">
+            <span v-for="(item,index) in specification" :key="index">{{item.aname}}</span>
+          </div>
           <div class="select">
-            <span v-for="(item,index) in topAll"
-                  :key="index">{{item}}</span>
-            <img src="/static/images/jt.png"
-                 alt
-                 class="jt" />
+            <span v-for="(item,index) in topAll" :key="index">{{item}}</span>
+            <img src="/static/images/jt.png" alt class="jt" />
           </div>
         </div>
       </div>
@@ -61,57 +49,68 @@
       </div>
     </div>
     <div class="pic">
-      <img mode="widthFix"
-           v-for="(item,index) in detailStrImgsAll"
-           :key="index"
-           :src="item.imgUrl"
-           alt />
+      <img
+        mode="widthFix"
+        v-for="(item,index) in detailStrImgsAll"
+        :key="index"
+        :src="item.imgUrl"
+        alt
+      />
     </div>
     <div class="footer">
-      <button>分享赚9.94元</button>
+      <button @click="button">分享赚9.94元</button>
       <button @click="lisjgo">立即购买</button>
     </div>
-    <div class="fixed_tops"
-         v-show="flag">
+    <div class="fixed_tops" v-show="flag">
       <div class="bottom_breed">
         <div class="allStar">
-          <div style="margin-left:5rpx"
-               class="breed_tops">
-            <div><span v-for="(item,index) in specification"
-                    :key="index">{{item.aname}}</span></div>
+          <div style="margin-left:5rpx" class="breed_tops">
+            <div>
+              <span v-for="(item,index) in specification" :key="index">{{item.aname}}</span>
+            </div>
             <p @click="xitems">X</p>
           </div>
           <div class="breed_imgs">
-            <div class="imgs_i"><img :src="detailStr.mainImgUrl"
-                   alt=""></div>
+            <div class="imgs_i">
+              <img :src="detailStr.mainImgUrl" alt />
+            </div>
             <div class="sping_i">
               <p>￥{{detailStr.salesPrice}}</p>
               <div>库存{{detailStr.totalStock}}</div>
             </div>
           </div>
-          <div v-if="specification"
-               class="attribute_items">
+          <div v-if="specification" class="attribute_items">
             <p>{{specification[0].aname}}</p>
-            <div><span v-for="(el,i) in specification[0].attributeValueRelationVoList"
-                    :key="i"
-                    @click="oneslide(i,el)"
-                    :class="i===index?'addressColor':null">{{el.vname}}</span></div>
+            <div>
+              <span
+                v-for="(el,i) in specification[0].attributeValueRelationVoList"
+                :key="i"
+                @click="oneslide(i,el)"
+                :class="i===index?'addressColor':null"
+              >{{el.vname}}</span>
+            </div>
           </div>
-          <div v-if="specification.length>=1 && specification[1]"
-               class="attribute_items">
+          <div v-if="specification.length>=1 && specification[1]" class="attribute_items">
             <p>{{specification[1].aname}}</p>
-            <div><span v-for="(el,i) in specification[1].attributeValueRelationVoList"
-                    :key="i"
-                    @click="tweslide(i,el)"
-                    :class="i===ind?'addressColor':null">{{el.vname}}</span></div>
+            <div>
+              <span
+                v-for="(el,i) in specification[1].attributeValueRelationVoList"
+                :key="i"
+                @click="tweslide(i,el)"
+                :class="i===ind?'addressColor':null"
+              >{{el.vname}}</span>
+            </div>
           </div>
-          <div v-if="specification.length>=2 && specification[2]"
-               class="attribute_items">
+          <div v-if="specification.length>=2 && specification[2]" class="attribute_items">
             <p>{{specification[2].aname}}</p>
-            <div><span v-for="(el,i) in specification[2].attributeValueRelationVoList"
-                    :key="i"
-                    @click="threeslide(i,el)"
-                    :class="i===dthreeIn?'addressColor':null">{{el.vname}}</span></div>
+            <div>
+              <span
+                v-for="(el,i) in specification[2].attributeValueRelationVoList"
+                :key="i"
+                @click="threeslide(i,el)"
+                :class="i===dthreeIn?'addressColor':null"
+              >{{el.vname}}</span>
+            </div>
           </div>
           <div class="bottomClick">
             <p>数量</p>
@@ -129,11 +128,11 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions } from "vuex";
 export default {
-  data () {
+  data() {
     return {
-      breed: '',
+      breed: "",
       flag: false,
       goumai: false,
       index: 0,
@@ -142,7 +141,7 @@ export default {
       price: 1,
       topsArr: [],
       topAll: []
-    }
+    };
   },
   computed: {
     ...mapState({
@@ -150,15 +149,15 @@ export default {
       detailStrImgsAll: state => state.index.detailStrImgsAll,
       detailAddressObj: state => state.index.detailAddressObj,
       specification: state => state.index.specification,
-      selectAll: state => state.index.selectAll,
+      selectAll: state => state.index.selectAll
     })
   },
-  onLoad (options) {
-    wx.setNavigationBarTitle({ title: '商品详情' });
+  onLoad(options) {
+    wx.setNavigationBarTitle({ title: "商品详情" });
     let that = this;
     this.speciFication({
       pid: options.pid
-    })
+    });
     this.detail({
       pid: options.pid
     }).then(res => {
@@ -166,93 +165,103 @@ export default {
         pid: res.pid,
         basePid: res.basePid,
         userIdentity: res.userIdentity
-      })
+      });
       that.detailAddress({
         sstid: res.sstid
-      })
-    })
+      });
+    });
   },
   methods: {
-    ...mapActions('index', ['detail', 'detailStrImg', 'detailAddress', 'speciFication', 'selectActionFn', 'orderActionFn']),
+    ...mapActions("index", [
+      "detail",
+      "detailStrImg",
+      "detailAddress",
+      "speciFication",
+      "selectActionFn",
+      "orderActionFn"
+    ]),
     //点击数据
-    detailStor () {
-      this.flag = true
+    detailStor() {
+      this.flag = true;
     },
     //点击X
-    xitems () {
-      this.flag = false
+    xitems() {
+      this.flag = false;
     },
     //点击立即购买
-    lisjgo () {
+    lisjgo() {
       let arr = [];
       this.specification.forEach(el => {
-        arr.push(el.attributeValueRelationVoList[0].vid)
-      })
-      this.topsArr = arr
+        arr.push(el.attributeValueRelationVoList[0].vid);
+      });
+      this.topsArr = arr;
       if (this.goumai) {
         this.topAll = [];
-        this.goumai = false
+        this.goumai = false;
         let arr = [];
         arr.push({
           pid: this.detailStr.pid,
           buyNum: this.price,
           skuKey: this.selectAll.skuKey
-        })
+        });
         this.orderActionFn({
           orderChannel: 4,
           skuPidNums: JSON.stringify(arr)
-        })
+        });
         wx.navigateTo({ url: `/pages/index/top-array/main` });
       } else {
-        this.flag = true
+        this.flag = true;
         this.selectActionFn({
           pid: this.detailStr.pid,
           vids: JSON.stringify(this.topsArr)
-        })
+        });
       }
     },
+    button() {
+      wx.navigateTo({ url: `/pages/index/cannas/main` });
+    },
     //选择第一个选项
-    oneslide (index, item) {
-      this.index = index
-      this.topsArr[0] = item.vid
+    oneslide(index, item) {
+      this.index = index;
+      this.topsArr[0] = item.vid;
       this.selectActionFn({
         pid: item.pid,
         vids: JSON.stringify(this.topsArr)
-      })
+      });
     },
     //选择第二个选项
-    tweslide (index, item) {
-      this.ind = index
-      this.topsArr[1] = item.vid
+    tweslide(index, item) {
+      this.ind = index;
+      this.topsArr[1] = item.vid;
       this.selectActionFn({
         pid: item.pid,
         vids: JSON.stringify(this.topsArr)
-      })
+      });
     },
     //选择第三个选项
-    threeslide (index, item) {
-      this.dthreeIn = index
-      this.topsArr[2] = item.vid
+    threeslide(index, item) {
+      this.dthreeIn = index;
+      this.topsArr[2] = item.vid;
       this.selectActionFn({
         pid: item.pid,
         vids: JSON.stringify(this.topsArr)
-      })
+      });
     },
     //点击购买
-    maiToshohppings () {
-      let str = []
+    maiToshohppings() {
+      let str = [];
       this.specification.forEach(el => {
-        str.push(el.attributeValueRelationVoList[0].vname)
-      })
-      this.topAll = str
-      this.flag = false
-      this.goumai = true
+        str.push(el.attributeValueRelationVoList[0].vname);
+      });
+      this.topAll = str;
+      this.flag = false;
+      this.goumai = true;
     },
     //加减操作
-    addcur (num) {
+    addcur(num) {
       if (num === 1) {
         if (this.price <= 1) {
-          return
+          return;
         } else {
           this.price--;
         }

@@ -134,7 +134,6 @@ const actions = {
     var data = await order(payload)
     commit('orderFn', data.result)
   },
-
 }
 const mutations = {
   topAll(state, options) {
